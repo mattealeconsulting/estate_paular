@@ -2,14 +2,16 @@
 
 <odoo>
     <record id="view_estate_property_list" model="ir.ui.view">
-        <field name="name">estate.property.list</field>
+        <field name="name">estate.property.view.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Properties">
-                <field name="name" />
+            <list string="Properties" class="estate-list">
+                <field name="name" class="o_text_overflow" />
                 <field name="postcode" />
                 <field name="bedrooms" />
                 <field name="living_area" />
+                <field name="total_area" />
+                <field name="best_price" />
                 <field name="expected_price" />
                 <field name="selling_price" />
                 <field name="date_availability" />
@@ -29,16 +31,20 @@
                         <h1>
                             <field name="name" required="1" />
                         </h1>
+                        <field name="tag_ids"
+                            widget="many2many_tags"
+                            options="{'color_field': 'color'}" />
                     </div>
 
                     <group>
                         <group>
+                            <field name="property_type_id" string="Property Type" />
                             <field name="postcode" />
-                            <field name="date_availability" />
+                            <field name="date_availability" string="Available From" />
                         </group>
                         <group>
-                            <field name="expected_price" />
-                            <field name="selling_price" readonly="selling_price" />
+                            <field name="expected_price" string="Expected Price" required="1" />
+                            <field name="selling_price" string="Selling Price" readonly="1" />
                         </group>
                     </group>
 
@@ -46,13 +52,33 @@
                         <page string="Description">
                             <group>
                                 <field name="description" />
+                            </group>
+                        </page>
+
+                        <page string="Offers">
+                            <field name="offer_ids">
+                                <list editable="bottom">
+                                    <field name="price" />
+                                    <field name="partner_id" string="Partner" />
+                                    <field name="status" />
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Other Info">
+                            <group>
                                 <field name="bedrooms" />
-                                <field name="living_area" />
+                                <field name="living_area" string="Living Area (sqm)" />
+                                <field name="total_area" readonly="1" />
                                 <field name="facades" />
                                 <field name="garage" />
                                 <field name="garden" />
-                                <field name="garden_area" invisible="not garden" />
-                                <field name="garden_orientation" invisible="not garden" />
+                                <field name="garden_area" string="Garden Area (sqm)"
+                                    invisible="garden == False" />
+                                <field name="garden_orientation" invisible="garden == False" />
+                                <field name="salesperson_id" string="Salesperson" />
+                                <field name="buyer_id" string="Buyer" />
+                                <field name="best_price" readonly="1" />
                             </group>
                         </page>
                     </notebook>
@@ -61,6 +87,7 @@
             </form>
         </field>
     </record>
+
 
     <record id="view_estate_property_search" model="ir.ui.view">
         <field name="name">estate.property.search</field>
@@ -75,13 +102,13 @@
                 <field name="facades" />
 
                 <filter name="available"
-                        string="Available"
-                        domain="[('date_availability','&lt;=', context_today())]" />
+                    string="Available"
+                    domain="[('date_availability','&lt;=', context_today())]" />
 
                 <group expand="0" string="Group by">
                     <filter name="group_by_postcode"
-                            string="Postcode"
-                            context="{'group_by' : 'postcode'}" />
+                        string="Postcode"
+                        context="{'group_by' : 'postcode'}" />
                 </group>
 
             </search>

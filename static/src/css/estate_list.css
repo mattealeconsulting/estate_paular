@@ -1,0 +1,32 @@
+/* .estate-list th,
+.estate-list td.o_data_cell {
+  text-align: left !important;
+} */
+.estate-list th[data-name="name"],
+.estate-list td.o_data_cell[data-name="name"] {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+
+.estate-list th[data-name="postcode"],
+.estate-list td.o_data_cell[data-name="postcode"] {
+  min-width: 90px;
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.estate-list th[data-name="bedrooms"],
+.estate-list td.o_data_cell[data-name="bedrooms"] { min-width: 80px; }
+.estate-list th[data-name="living_area"],
+.estate-list td.o_data_cell[data-name="living_area"] { min-width: 110px; }
+.estate-list th[data-name="expected_price"],
+.estate-list td.o_data_cell[data-name="expected_price"] { min-width: 130px; }
+.estate-list th[data-name="selling_price"],
+.estate-list td.o_data_cell[data-name="selling_price"] { min-width: 110px; }
+.estate-list th[data-name="date_availability"],
+.estate-list td.o_data_cell[data-name="date_availability"] { min-width: 130px; }
