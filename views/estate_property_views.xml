@@ -5,16 +5,22 @@
         <field name="name">estate.property.view.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Properties" class="estate-list">
+            <list string="Properties"
+                decoration-muted="state == 'canceled'"
+                decoration-success="state in ('offer_accepted','sold')"
+                decoration-warning="state == 'offer_received'"
+                decoration-bf="state in ('sold','canceled')">
                 <field name="name" class="o_text_overflow" />
+                <field name="property_type_id" />
                 <field name="postcode" />
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}" />
                 <field name="bedrooms" />
                 <field name="living_area" />
                 <field name="total_area" />
                 <field name="best_price" />
                 <field name="expected_price" />
                 <field name="selling_price" />
-                <field name="date_availability" />
+                <field name="date_availability" optional="hide" />
             </list>
         </field>
     </record>
@@ -23,9 +29,19 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form string="Property">
+            <form string="Property" create="1" edit="1" delete="1" duplicate="1">
+                <header>
+                    <button name="action_sell" type="object" string="Sold"
+                        class="btn-primary"
+                        invisible="state != 'offer_accepted'" />
+                    <button name="action_cancel" type="object" string="Cancel"
+                        class="btn-secondary"
+                        invisible="state in ('sold','canceled')" />
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="new,offer_received,offer_accepted,sold"
+                        readonly="1" />
+                </header>
                 <sheet>
-
                     <div class="oe_title">
                         <label for="name" class="oe_inline" />
                         <h1>
@@ -44,6 +60,7 @@
                         </group>
                         <group>
                             <field name="expected_price" string="Expected Price" required="1" />
+                            <field name="best_price" string="Best Offer" readonly="1" />
                             <field name="selling_price" string="Selling Price" readonly="1" />
                         </group>
                     </group>
@@ -52,33 +69,52 @@
                         <page string="Description">
                             <group>
                                 <field name="description" />
-                            </group>
-                        </page>
-
-                        <page string="Offers">
-                            <field name="offer_ids">
-                                <list editable="bottom">
-                                    <field name="price" />
-                                    <field name="partner_id" string="Partner" />
-                                    <field name="status" />
-                                </list>
-                            </field>
-                        </page>
-
-                        <page string="Other Info">
-                            <group>
                                 <field name="bedrooms" />
                                 <field name="living_area" string="Living Area (sqm)" />
-                                <field name="total_area" readonly="1" />
                                 <field name="facades" />
                                 <field name="garage" />
                                 <field name="garden" />
                                 <field name="garden_area" string="Garden Area (sqm)"
                                     invisible="garden == False" />
                                 <field name="garden_orientation" invisible="garden == False" />
+                                <field name="total_area" readonly="1" />
+                            </group>
+                        </page>
+
+                        <page string="Offers">
+                            <field name="offer_ids">
+                                <list editable="bottom"
+                                    decoration-success="status == 'accepted'"
+                                    decoration-danger="status == 'refused'"
+                                    decoration-bf="status == 'accepted'">
+                                    <field name="price" />
+                                    <field name="partner_id" string="Buyer" />
+                                    <field name="validity" string="Validity (days)" />
+                                    <field name="date_deadline" string="Deadline" />
+                                    <field name="status" invisible="1" />
+                                    <button name="action_accept" type="object" title="Accept"
+                                        icon="fa-check" class="btn-link text-success"
+                                        invisible="status == 'accepted'" />
+                                    <button name="action_refuse" type="object" title="Refuse"
+                                        icon="fa-times" class="btn-link text-danger"
+                                        invisible="status == 'refused'" />
+                                </list>
+                                <form string="Create Offer">
+                                    <group>
+                                        <field name="partner_id" />
+                                        <field name="price" required="1" />
+                                        <field name="validity" />
+                                        <field name="date_deadline" />
+                                        <field name="status" />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+
+                        <page string="Other Info">
+                            <group>
                                 <field name="salesperson_id" string="Salesperson" />
                                 <field name="buyer_id" string="Buyer" />
-                                <field name="best_price" readonly="1" />
                             </group>
                         </page>
                     </notebook>
@@ -101,16 +137,24 @@
                 <field name="living_area" />
                 <field name="facades" />
 
+                <filter name="my_props" string="My Properties" domain="[('salesperson_id','=',uid)]" />
+                <filter name="archived" string="Archived" domain="[('active','=', False)]" />
+
+                <field name="living_area" string="Living Area (>=)"
+                    filter_domain="[('living_area', '>=', self)]" />
                 <filter name="available"
                     string="Available"
-                    domain="[('date_availability','&lt;=', context_today())]" />
+                    domain="[('state', 'not in', ['sold','canceled']),
+                       ('date_availability','&lt;=', context_today())]" />
 
                 <group expand="0" string="Group by">
-                    <filter name="group_by_postcode"
-                        string="Postcode"
+                    <filter name="group_by_postcode" string="Postcode"
                         context="{'group_by' : 'postcode'}" />
+                    <filter name="group_by_type" string="Property Type"
+                        context="{'group_by' : 'property_type_id'}" />
+                    <filter name="group_by_salesperson" string="Salesperson"
+                        context="{'group_by' : 'salesperson_id'}" />
                 </group>
-
             </search>
         </field>
     </record>

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <odoo>
     <record id="view_estate_property_offer_list" model="ir.ui.view">
         <field name="name">estate.property.offer.list</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <list>
+            <list editable="bottom"
+                decoration-success="status == 'accepted'"
+                decoration-danger="status == 'refused'">
                 <field name="property_id" />
+                <field name="property_type_id"/>
                 <field name="partner_id" />
                 <field name="price" />
-                <field name="validity" />
-                <field name="date_deadline" />
-                <field name="status" />
+                <field name="validity" string="Validity (days)"/>
+                <field name="date_deadline" string="Deadline"/>
+                <field name="status"/>
             </list>
         </field>
     </record>
@@ -20,7 +22,13 @@
         <field name="name">estate.property.offer.form</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <form string="Offer">
+            <form string="Offer" create="1" edit="1" delete="1">
+                <header>
+                    <button name="action_accept" type="object" string="Accept" class="btn-primary"
+                        invisible="status == 'accepted'" />
+                    <button name="action_refuse" type="object" string="Refuse"
+                        invisible="status == 'refused'" />
+                </header>
                 <sheet>
                     <group>
                         <field name="property_id" required="1" />
