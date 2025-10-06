@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="product_estate_commission" model="product.product">
+        <field name="name">Estate Commission</field>
+        <field name="type">service</field>
+        <field name="list_price">0.0</field>
+        <field name="sale_ok">True</field>
+    </record>
+
+    <record id="product_estate_admin_fee" model="product.product">
+        <field name="name">Administrative Fee</field>
+        <field name="type">service</field>
+        <field name="list_price">100.0</field>
+        <field name="sale_ok">True</field>
+    </record>
+</odoo>

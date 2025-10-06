@@ -1,11 +1,13 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_compare
 
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Real Estate Property"
     _order = "state, id desc"
     _rec_name = "name"
+    _inherit = ["estate.manager.guard"]
 
     # Multi-company &currency
     company_id = fields.Many2one(
@@ -26,8 +28,8 @@ class EstateProperty(models.Model):
          default=lambda self: fields.Date.add(fields.Date.context_today(self), months=3),
          help="Default: today + 3 months.")
 
-    expected_price = fields.Float(string="Expected Price", required=True, currency_field="currency_id")
-    selling_price = fields.Float(string="Selling Price", currency_field="currency_id")
+    expected_price = fields.Monetary(string="Expected Price", required=True, currency_field="currency_id")
+    selling_price = fields.Monetary(string="Selling Price", currency_field="currency_id", copy=False)
 
     bedrooms = fields.Integer(string="Bedrooms")
     living_area = fields.Integer(string="Living Area (sqm)")
@@ -76,7 +78,7 @@ class EstateProperty(models.Model):
         compute="_compute_total_area",
         store=True,
     )
-    best_price = fields.Float(
+    best_price = fields.Monetary(
         string="Best offer",
         currency_field="currency_id",
         compute="_compute_best_price",
@@ -88,7 +90,7 @@ class EstateProperty(models.Model):
         for rec in self:
             rec.total_area = (rec.living_area or 0) + (rec.garden_area or 0  if rec.garden else 0)
     
-    @api.depends("offer_ids.price")
+    @api.depends("offer_ids", "offer_ids.price")
     def _compute_best_price(self):
         for rec in self:
             prices = rec.offer_ids.mapped("price")
@@ -103,24 +105,26 @@ class EstateProperty(models.Model):
             else:
                 rec.garden_area = 0
                 rec.garden_orientation = False
-    
+
     # Actions state
 
     def action_cancel(self):
+        self._ensure_estate_manager()
         for rec in self:
             if rec.state == "sold":
-              raise UserError("A sold property cannot be canceled.")
+              raise UserError(_("A sold property cannot be canceled."))
             rec.write({"state": "canceled"})
         return True
     
     def action_sell(self):
+        self._ensure_estate_manager()
         for rec in self:
             if rec.state == "canceled":
-                raise UserError("Canceled properties cannot be sold.")
+                raise UserError(_("Canceled properties cannot be sold."))
             accepted = rec.offer_ids.filtered(lambda o: o.status == "accepted")[:1]
             if not accepted:
-                raise UserError("You must accept an offer before selling.")
-        self.write({"state": "sold"})
+                raise UserError(_("You must accept an offer before selling."))
+            rec.write({"state": "sold"})
         return True
     
     # Constraints SQL
@@ -135,9 +139,10 @@ class EstateProperty(models.Model):
     ]
 
     # Python constratints
-    @api.constrains("selling_price", "expected_price", "state")
+    @api.constrains("selling_price", "expected_price", "state","currency_id")
     def _check_selling_vs_expected(self):
         for rec in self:
-            if rec.selling_price and rec.state != "canceled":
-                if rec.expected_price and rec.selling_price < rec.expected_price * 0.90:
+            if rec.selling_price and rec.expected_price and rec.state != "canceled":
+                threshold = rec.expected_price * 0.90
+                if float_compare(rec.selling_price, threshold, precision_rounding=rec.currency_id.rounding)<0:
                     raise ValidationError(_("Selling Price must be at least 90% of Expected Price."))

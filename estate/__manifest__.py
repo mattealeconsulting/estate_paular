@@ -6,15 +6,20 @@
     "author": "Paula R.",
     "website": "",
     "license": "OPL-1",
-    "depends": ["base"],
+    "depends": ["base", ],
     "data": [
+        "security/estate_security.xml",
         "security/ir.model.access.csv",
         "views/estate_actions.xml",
+        "views/estate_menus.xml",
         "views/estate_property_views.xml",
+        "views/estate_kanban_views.xml",
+        'views/estate_qweb_templates.xml',
         "views/estate_property_type_views.xml",
         "views/estate_property_tag_views.xml",
         "views/estate_property_offer_views.xml",
-        "views/estate_menus.xml",
+        'views/estate_property_preview_views.xml',
+        "views/res_users_views.xml",
         "demo/estate_demo.xml"
     ],
     "demo": [

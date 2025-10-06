@@ -1,0 +1,80 @@
+<odoo>
+
+    <record id="view_property_invoice_list" model="ir.ui.view">
+        <field name="name">estate.property.invoice.list</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <list string="Invoices" create="false" delete="false"
+                decoration-muted="state == 'cancel'"
+                decoration-bf="state in ('posted','cancel')">
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="invoice_date" />
+                <field name="invoice_date_due" />
+                <field name="activity_ids" widget="mail_activity" optional="show" />
+                <field name="amount_untaxed" sum="Total (Tax Excluded)" />
+                <field name="amount_total" sum="Total" />
+                <field name="state" />
+                <field name="payment_state" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_property_invoice_search" model="ir.ui.view">
+        <field name="name">estate.property.invoice.search</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <search string="Search Invoices">
+                <field name="name" string="Number" />
+                <field name="partner_id" string="Customer" />
+                <field name="invoice_origin" string="Property" />
+                <field name="invoice_date" string="Invoice Date" />
+                <field name="invoice_date_due" string="Due Date" />
+
+                <separator />
+
+                <filter name="flt_customer_invoices" string="Customer Invoices"
+                    domain="[('move_type','=','out_invoice')]" />
+                <filter name="flt_draft" string="Draft"
+                    domain="[('state','=','draft')]" />
+                <filter name="flt_posted" string="Posted"
+                    domain="[('state','=','posted')]" />
+                <filter name="flt_not_paid" string="Not Paid"
+                    domain="[('payment_state','in',('not_paid','partial'))]" />
+                <filter name="flt_overdue" string="Overdue"
+                    domain="[('invoice_date_due','&lt;', context_today()), ('payment_state','!=','paid')]" />
+
+                <separator />
+
+                <group expand="0" string="Group By">
+                    <filter name="grp_property" string="Property"
+                        context="{'group_by':'invoice_origin'}" />
+                    <filter name="grp_customer" string="Customer"
+                        context="{'group_by':'partner_id'}" />
+                    <filter name="grp_state" string="Status" context="{'group_by':'state'}" />
+                    <filter name="grp_month" string="Invoice Month"
+                        context="{'group_by':'invoice_date:month'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_property_invoices" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_property_invoice_list" />
+        <field name="search_view_id" ref="view_property_invoice_search" />
+        <field name="domain">[('move_type','=','out_invoice')]</field>
+        <field name="context">{'default_move_type': 'out_invoice'}</field>
+    </record>
+
+    <menuitem id="menu_estate_account_root"
+        name="Invoicing"
+        sequence="90" />
+    <menuitem id="menu_property_invoices"
+        name="Invoices"
+        parent="menu_estate_account_root"
+        action="action_property_invoices"
+        sequence="10" />
+</odoo>

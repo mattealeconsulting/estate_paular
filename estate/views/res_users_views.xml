@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_inherit_estate" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.estate</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Real Estate Properties" groups="base.group_user">
+                    <field name="property_ids" nolabel="1"
+                        groups="base.group_user"
+                        domain="[('state','not in', ('sold','canceled'))]"
+                        context="{'default_salesperson_id': uid}">
+                        <list create="0" edit="0" delete="0">
+                            <field name="name" />
+                            <field name="property_type_id" />
+                            <field name="postcode" />
+                            <field name="tag_ids" />
+                            <field name="bedrooms" />
+                            <field name="living_area" />
+                            <field name="expected_price" />
+                            <field name="selling_price" />
+                            <field name="state" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
