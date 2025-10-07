@@ -14,22 +14,15 @@
         "views/estate_menus.xml",
         "views/estate_property_views.xml",
         "views/estate_kanban_views.xml",
-        'views/estate_qweb_templates.xml',
         "views/estate_property_type_views.xml",
         "views/estate_property_tag_views.xml",
         "views/estate_property_offer_views.xml",
-        'views/estate_property_preview_views.xml',
         "views/res_users_views.xml",
         "demo/estate_demo.xml"
     ],
     "demo": [
         "demo/estate_demo.xml",
     ],
-    # "assets": {
-    #     "web.assets_backend": [
-    #          "estate/static/src/css/estate_list.css",
-    #     ],
-    # },
     "application": True,
     "installable": True,
 }
