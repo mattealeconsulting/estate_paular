@@ -18,6 +18,14 @@
         action="estate.action_estate_properties_kanban"
         sequence="5" />
 
+    <!-- Playground -->
+    <menuitem id="menu_estate_playground"
+        name="OWL Playground"
+        parent="estate.menu_estate_root"
+        action="estate.action_estate_playground"
+        sequence="99"
+        groups="estate.group_estate_manager" />
+
     <!-- Settings -->
     <menuitem id="menu_estate_settings" parent="menu_estate_root"
         name="Settings" sequence="90"

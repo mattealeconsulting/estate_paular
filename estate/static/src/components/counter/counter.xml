@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.Counter">
+    <div class="o_card p-3 rounded-xl shadow-sm border cursor-pointer"
+         t-on-click="openList" role="button">
+      <div class="text-muted"><t t-esc="props.label"/></div>
+      <div class="my-2 text-3xl fw-bolder">
+        <t t-if="state.loading">…</t>
+        <t t-else=""><t t-esc="state.value"/></t>
+      </div>
+    </div>
+  </t>
+</templates>

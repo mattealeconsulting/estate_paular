@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.Playground">
+    <div class="o_content" role="main" style="overflow:auto; height:100vh;">
+      <div class="p-3">
+        <Card title="'Properties'" collapsible="true">
+          <t t-if="!state.loading">
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;">
+              <Counter label="'Available'"   model="'estate.property'" domain="state.availDomain"   openAction="true"/>
+              <Counter label="'Unavailable'" model="'estate.property'" domain="state.unavailDomain" openAction="true"/>
+              <Counter label="'All'"         model="'estate.property'" domain="[]" count="total"     openAction="true"/>
+            </div>
+          </t>
+          <t t-else=""><div class="text-muted">Loading…</div></t>
+        </Card>
+
+        <div class="mt-3">
+          <Card title="'Summary'" collapsible="true" defaultCollapsed="true">
+            <t t-out="state.summaryHtml"/>
+          </Card>
+        </div>
+
+        <div class="mt-3">
+          <Card title="'Follow-ups'" collapsible="true">
+            <TodoList storageKey="'estate.todo'" placeholder="'Add a follow-up task…'"/>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </t>
+</templates>

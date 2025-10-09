@@ -6,7 +6,7 @@
     "author": "Paula R.",
     "website": "",
     "license": "OPL-1",
-    "depends": ["base", ],
+    "depends": ["base", "web"],
     "data": [
         "security/estate_security.xml",
         "security/ir.model.access.csv",
@@ -23,6 +23,12 @@
     "demo": [
         "demo/estate_demo.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "estate/static/src/**/*.xml",
+            "estate/static/src/**/*.js",
+        ],
+    },
     "application": True,
     "installable": True,
 }

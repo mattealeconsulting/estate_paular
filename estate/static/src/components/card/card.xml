@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.Card">
+    <div class="o_card p-3 rounded-xl shadow-sm border">
+      <div t-if="props.title or props.collapsible"
+           class="d-flex align-items-center justify-content-between mb-2">
+        <div t-if="props.title" class="fw-semibold">
+          <t t-esc="props.title"/>
+        </div>
+        <button t-if="props.collapsible"
+                class="btn btn-sm btn-outline-secondary"
+                t-att-aria-expanded="!state.collapsed"
+                t-on-click="toggle">
+          <t t-esc="state.collapsed ? 'Expand' : 'Collapse'"/>
+        </button>
+      </div>
+
+      <div t-if="!state.collapsed">
+        <t t-slot="default"/>
+      </div>
+    </div>
+  </t>
+</templates>
