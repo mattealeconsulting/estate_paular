@@ -38,8 +38,13 @@
     <field name="domain">[('property_type_id', '=', active_id)]</field>
   </record>
 
+  <record id="action_estate_dashboard" model="ir.actions.client">
+    <field name="name">Estate Dashboard</field>
+    <field name="tag">estate.dashboard</field>
+  </record>
+
   <record id="action_estate_playground" model="ir.actions.client">
-    <field name="name">OWL Playground</field>
+    <field name="name">Playground</field>
     <field name="tag">estate.playground</field>
   </record>
 

@@ -21,9 +21,9 @@
     <!-- Playground -->
     <menuitem id="menu_estate_playground"
         name="OWL Playground"
-        parent="estate.menu_estate_root"
-        action="estate.action_estate_playground"
-        sequence="99"
+        parent="menu_estate_root"
+        action="action_estate_playground"
+        sequence="98"
         groups="estate.group_estate_manager" />
 
     <!-- Settings -->
@@ -41,5 +41,12 @@
     <record id="menu_estate_properties" model="ir.ui.menu">
         <field name="active" eval="False" />
     </record>
+
+    <!-- Dashboard -->
+    <menuitem id="menu_estate_dashboard"
+        name="Dashboard"
+        parent="menu_estate_root"
+        action="action_estate_dashboard"
+        sequence="99" />
 
 </odoo>

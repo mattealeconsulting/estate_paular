@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.Dashboard">
+    <div class="o_content" role="main" style="overflow:auto; height:100vh;">
+      <div class="p-3">
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h2 class="mb-0">Estate Dashboard</h2>
+          <button class="btn btn-outline-secondary" t-on-click="toggleCustomize">
+            <i class="fa fa-sliders"/> Customize
+          </button>
+        </div>
+
+        <div t-if="prefs.customizeOpen" class="border rounded p-3 mb-3">
+          <div class="fw-semibold mb-2">Visible items (drag to reorder)</div>
+
+          <div class="d-flex flex-column gap-2 mb-3">
+            <t t-foreach="prefs.order" t-as="k" t-key="k">
+              <t t-set="it" t-value="entries.find(e => e.key === k)"/>
+              <t t-if="it">
+                <div class="d-flex align-items-center gap-2 p-2 border rounded bg-light"
+                    draggable="true"
+                    t-on-dragstart="(ev) => onDragStart(k, ev)"
+                    t-on-dragover.prevent="onDragOver"
+                    t-on-drop.prevent="(ev) => onDrop(k, ev)">
+                  <span class="text-muted" title="Drag">
+                    <i class="fa fa-grip-vertical"/>
+                  </span>
+                  <label class="form-check mb-0 d-flex align-items-center gap-2">
+                    <input class="form-check-input"
+                          type="checkbox"
+                          t-att-checked="prefs.enabled.has(k) ? true : false"
+                          t-on-change="(ev) => onToggleKey(k, ev)"/>
+                    <span class="form-check-label"><t t-esc="it.title"/></span>
+                  </label>
+                </div>
+              </t>
+            </t>
+          </div>
+
+          <div class="mt-2 d-flex gap-2">
+            <button class="btn btn-primary" t-on-click="savePrefs">Save</button>
+            <button class="btn btn-outline-secondary" t-on-click="toggleCustomize">Cancel</button>
+            <button class="btn btn-link text-danger" t-on-click="resetPrefs">Reset to default</button>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <button class="btn btn-primary"   t-on-click="openAllProperties">All Properties</button>
+          <button class="btn btn-success"   t-on-click="openAvailableProperties">Available</button>
+          <button class="btn btn-secondary" t-on-click="openUnavailableProperties">Unavailable</button>
+          <button class="btn btn-outline-primary" t-on-click="openCustomers">Customers</button>
+          <button class="btn btn-warning"   t-on-click="openCrmLeads">Leads (CRM)</button>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <t t-foreach="visibleEntries" t-as="it" t-key="it.key">
+            <DashboardItem title="it.title" size="it.size or 1">
+              <t t-set="cmpProps" t-value="it.props ? it.props({env: env, stats: state.data}) : {}"/>
+              <t t-component="it.Component" t-props="cmpProps"/>
+            </DashboardItem>
+          </t>
+        </div>
+
+        <t t-if="state.loading">
+          <div class="text-muted">Loading statistics…</div>
+        </t>
+        <t t-elif="state.error">
+          <div class="alert alert-danger">Failed to load statistics.</div>
+        </t>
+        <t t-else="">
+          <div class="d-flex flex-wrap gap-3">
+            <DashboardItem title="'Quick stats'" size="2">
+              <ul class="mb-0">
+                <li>Pending offers: <strong><t t-esc="state.data.pending_offers or 0"/></strong></li>
+                <li>New properties this month: <strong><t t-esc="state.data.new_this_month or 0"/></strong></li>
+              </ul>
+              <div class="text-muted mt-2" t-if="state.lastUpdated">
+                <small>Updated: <t t-esc="state.lastUpdated.toLocaleTimeString()"/></small>
+              </div>
+            </DashboardItem>
+
+            <DashboardItem title="'By state (pie)'" size="2">
+              <PieChart data="state.data.by_state" height="420"/>
+            </DashboardItem>
+          </div>
+        </t>
+
+      </div>
+    </div>
+  </t>
+</templates>

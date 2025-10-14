@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.TodoList">
+    <div class="o_card p-3 rounded-xl shadow-sm border">
+      <div t-if="props.title" class="fw-semibold mb-2"><t t-esc="props.title"/></div>
+
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <input type="text" class="form-control"
+               t-ref="todoInput"
+               t-att-placeholder="props.placeholder"
+               t-model="state.input" t-on-keyup="onInputKeyup"/>
+        <button class="btn btn-primary" t-on-click="addTask">Add</button>
+      </div>
+
+      <div class="mb-2 d-flex align-items-center justify-content-between">
+        <div class="btn-group">
+          <button t-attf-class="btn btn-secondary #{state.filter==='all' ? 'active' : ''}"
+                  t-att-data-filter="'all'"
+                  t-on-click="setFilter">All</button>
+          <button t-attf-class="btn btn-secondary #{state.filter==='active' ? 'active' : ''}"
+                  t-att-data-filter="'active'"
+                  t-on-click="setFilter">Active</button>
+          <button t-attf-class="btn btn-secondary #{state.filter==='done' ? 'active' : ''}"
+                  t-att-data-filter="'done'"
+                  t-on-click="setFilter">Done</button>
+        </div>
+        <button class="btn btn-link text-danger" t-on-click="clearCompleted">Clear completed</button>
+      </div>
+
+      <ul class="list-unstyled mb-0">
+        <t t-foreach="filtered" t-as="t" t-key="t.id">
+          <li class="d-flex align-items-center justify-content-between py-1 border-bottom">
+            <div class="d-flex align-items-center gap-2">
+              <input type="checkbox" t-att-checked="t.done" t-on-change="() => this.toggleTask(t)"/>
+              <span t-att-class="t.done ? 'text-decoration-line-through text-muted' : ''">
+                <t t-esc="t.text"/>
+              </span>
+            </div>
+            <button class="btn btn-sm btn-outline-danger" t-on-click="() => this.removeTask(t)">Delete</button>
+          </li>
+        </t>
+        <li t-if="filtered.length===0" class="text-muted py-2">No tasks</li>
+      </ul>
+
+      <div class="mt-2 text-muted small">
+        <t t-esc="remaining"/> pending
+      </div>
+    </div>
+  </t>
+</templates>

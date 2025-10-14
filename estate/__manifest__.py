@@ -6,7 +6,7 @@
     "author": "Paula R.",
     "website": "",
     "license": "OPL-1",
-    "depends": ["base", "web"],
+    "depends": ["base", "web", "crm"],
     "data": [
         "security/estate_security.xml",
         "security/ir.model.access.csv",
@@ -18,15 +18,43 @@
         "views/estate_property_tag_views.xml",
         "views/estate_property_offer_views.xml",
         "views/res_users_views.xml",
-        "demo/estate_demo.xml"
+        "demo/estate_demo.xml",
     ],
     "demo": [
         "demo/estate_demo.xml",
     ],
     "assets": {
         "web.assets_backend": [
-            "estate/static/src/**/*.xml",
-            "estate/static/src/**/*.js",
+            "estate/static/src/services/dashboard_stats.js",
+            "estate/static/src/lazy/lazy_loader.xml",
+            "estate/static/src/lazy/dashboard_lazy.js",
+            "estate/static/src/lazy/playground_lazy.js",
+            "estate/static/src/components/counter/counter.js",
+            "estate/static/src/components/counter/counter.xml",
+        ],
+
+        "estate.dashboard_assets": [
+            "estate/static/src/components/dashboard/dashboard.js",
+            "estate/static/src/components/dashboard/dashboard.xml",
+            "estate/static/src/components/dashboard/items_order.js",
+            "estate/static/src/components/dashboard/items_prefs.js",
+            "estate/static/src/components/dashboard/items_extra.js",
+            "estate/static/src/components/dashboard/items_registry.js",
+            "estate/static/src/components/dashboard/items_default.js",
+            "estate/static/src/components/dashboard_item/dashboard_item.js",
+            "estate/static/src/components/dashboard_item/dashboard_item.xml",
+            "estate/static/src/components/pie_chart/pie_chart.js",
+            "estate/static/src/components/pie_chart/pie_chart.xml",
+        ],
+
+
+        "estate.playground_assets": [
+            "estate/static/src/components/card/card.js",
+            "estate/static/src/components/card/card.xml",
+            "estate/static/src/components/todo_list/todo_list.js",
+            "estate/static/src/components/todo_list/todo_list.xml",
+            "estate/static/src/components/playground/playground.js",
+            "estate/static/src/components/playground/playground.xml",
         ],
     },
     "application": True,

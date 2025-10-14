@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<t t-name="estate.LazyLoader">
+    <t t-if="state.error">
+        <div class="alert alert-danger"> Failed to load component. <div>
+                <t t-esc="'' + state.error" />
+            </div>
+        </div>
+    </t>
+    <t t-elif="state.Component" t-component="state.Component" t-props="props" />
+    <div t-else="" class="o_loading"><i class="fa fa-spinner fa-spin" /> Loading...</div>
+</t>

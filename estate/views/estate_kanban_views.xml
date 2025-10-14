@@ -22,7 +22,7 @@
         <field name="state"/>
 
         <templates>
-          <t t-name="kanban-box">
+          <t t-name="card">
             <div class="o_kanban_record">
               <div class="o_kanban_record_title">
                 <strong><t t-esc="record.name.value"/></strong>

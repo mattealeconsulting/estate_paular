@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.DashboardItem">
+    <div class="o_card p-3 rounded-xl shadow-sm border" t-att-style="widthStyle">
+      <div t-if="props.title" class="fw-semibold mb-2"><t t-esc="props.title"/></div>
+      <t t-slot="default"/>
+    </div>
+  </t>
+</templates>
