@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.ClickValue">
+    <span class="o_click_value" 
+          t-att-title="fullValue"
+          t-esc="displayValue"/>
+  </t>
+</templates>

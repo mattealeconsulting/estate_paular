@@ -48,4 +48,9 @@
     <field name="tag">estate.playground</field>
   </record>
 
+  <record id="action_clicker_game" model="ir.actions.client">
+    <field name="name">Clicker Game</field>
+    <field name="tag">estate.clicker_game_action</field>
+  </record>
+
 </odoo>

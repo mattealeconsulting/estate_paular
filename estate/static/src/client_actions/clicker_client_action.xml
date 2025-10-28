@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.ClickerClientAction" owl="1">
+    <div class="o_content flex-grow-1" role="main" style="overflow:auto; height:100vh; min-height:0;">
+      <div class="o_clicker_page d-flex flex-column p-3 gap-3">
+        <div class="d-flex align-items-center gap-3">
+          <h3 class="mb-0">Clicks: <ClickValue t-props="{ value: state.clicks }"/></h3>
+          <button class="btn btn-primary" t-on-click="increment">Increment</button>
+          <button class="btn btn-outline-secondary" t-on-click="reset">Reset</button>
+        </div>
+
+        <Notebook class="o_notebook" defaultPage="defaultNotebookPage">
+
+          <t t-set-slot="page_clicks" title="'Clicks'" isVisible="true">
+            <div class="mb-4">
+              <h4 class="mb-3">Bots</h4>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-2 mb-3">
+                        <strong t-esc="state.clickBots"/>
+                        <span>x clickbot (50 clicks/10seconds)</span>
+                        <i class="fa fa-robot"/>
+                      </div>
+                      <button class="btn btn-secondary w-100"
+                              t-on-click="buyBot"
+                              t-att-disabled="state.clicks &lt; clicker.BOT_COST">
+                        Buy clickbot (<t t-esc="clicker.BOT_COST"/> clicks)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-2 mb-3">
+                        <strong t-esc="state.bigBots"/>
+                        <span>x bigbot (500 clicks/10seconds)</span>
+                        <i class="fa fa-robot"/>
+                      </div>
+                      <button class="btn btn-secondary w-100"
+                              t-on-click="buyBigBot"
+                              t-att-disabled="state.clicks &lt; clicker.BIGBOT_COST">
+                        Buy bigbot (<t t-esc="clicker.BIGBOT_COST"/> clicks)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="mb-3">Power multiplier</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-2 mb-3">
+                        <strong t-esc="state.power"/><span>x</span><i class="fa fa-bolt"/>
+                      </div>
+                      <button class="btn btn-secondary w-100"
+                              t-on-click="buyPower"
+                              t-att-disabled="state.clicks &lt; clicker.POWER_COST || state.level &lt; 3">
+                        Buy Power Multiplier (<t t-esc="clicker.POWER_COST"/> clicks)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </t>
+
+          <t t-set-slot="page_trees" title="'Trees and Fruits'" isVisible="true">
+            <!-- Trees -->
+            <div class="mb-4">
+              <h4 class="mb-3">Trees</h4>
+              <div class="row g-3">
+                <!-- Pear trees -->
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-2">
+                        <strong t-esc="state.pearTrees"/>
+                        <span>x pearTree (1x pear /30seconds)</span>
+                        <i class="fa fa-tree"/>
+                      </div>
+                      <button class="btn btn-light w-100 mt-3"
+                              t-on-click="buyTree"
+                              t-att-disabled="state.clicks &lt; clicker.TREE_COST">
+                        Buy pearTree (<t t-esc="clicker.TREE_COST"/> clicks)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-2">
+                        <strong t-esc="state.cherryTrees"/>
+                        <span>x cherryTree (1x cherry /30seconds)</span>
+                        <i class="fa fa-tree"/>
+                      </div>
+                      <button class="btn btn-light w-100 mt-3"
+                              t-on-click="buyTree"
+                              t-att-disabled="state.clicks &lt; clicker.TREE_COST">
+                        Buy cherryTree (<t t-esc="clicker.TREE_COST"/> clicks)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="mb-3">Fruits</h4>
+              <div class="row g-3">
+                <div class="col-auto">
+                  <div class="card"><div class="card-body text-center">
+                    <strong t-esc="state.pearFruits"/><span>x pear</span>
+                  </div></div>
+                </div>
+                <div class="col-auto">
+                  <div class="card"><div class="card-body text-center">
+                    <strong t-esc="state.cherryFruits"/><span>x cherry</span>
+                  </div></div>
+                </div>
+              </div>
+            </div>
+          </t>
+
+        </Notebook>
+      </div>
+    </div>
+  </t>
+</templates>

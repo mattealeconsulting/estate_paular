@@ -26,11 +26,32 @@
     "assets": {
         "web.assets_backend": [
             "estate/static/src/services/dashboard_stats.js",
+            
+            "estate/static/src/rewards/rewards_registry.js",
+
+            "estate/static/src/models/clicker_model.js",
+            "estate/static/src/services/clicker_service.js",
+            "estate/static/src/hooks/use_clicker.js",
+            "estate/static/src/utils/number.js",
+            
+            "estate/static/src/commands/clicker_commands.js",
+            "estate/static/src/patches/form_controller_reward.js",
+
+            "estate/static/src/components/click_value/click_value.xml",
+            "estate/static/src/components/click_value/click_value.js",
+
+            "estate/static/src/components/counter/counter.xml",
+            "estate/static/src/components/counter/counter.js",
+
             "estate/static/src/lazy/lazy_loader.xml",
             "estate/static/src/lazy/dashboard_lazy.js",
             "estate/static/src/lazy/playground_lazy.js",
-            "estate/static/src/components/counter/counter.js",
-            "estate/static/src/components/counter/counter.xml",
+
+            "estate/static/src/client_actions/clicker_client_action.xml",
+            "estate/static/src/client_actions/clicker_client_action.js",
+
+            "estate/static/src/systray/clicker_systray_item.xml",
+            "estate/static/src/systray/clicker_systray_item.js",
         ],
 
         "estate.dashboard_assets": [

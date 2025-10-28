@@ -19,7 +19,7 @@ function isValidDomain(v) {
 export class Counter extends Component {
     static template = "estate.Counter";
     static props = {
-        label: { type: String },
+        label: { type: String, optional: true },
         model: { type: String },
         domain: { type: [Array, String], optional: true, validate: isValidDomain },
         openAction: { type: Boolean, optional: true },
@@ -27,6 +27,7 @@ export class Counter extends Component {
     };
 
     static defaultProps = {
+        label: "Counter",
         openAction: true,
     };
 

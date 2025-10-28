@@ -23,7 +23,7 @@
         name="OWL Playground"
         parent="menu_estate_root"
         action="action_estate_playground"
-        sequence="98"
+        sequence="97"
         groups="estate.group_estate_manager" />
 
     <!-- Settings -->
@@ -47,6 +47,13 @@
         name="Dashboard"
         parent="menu_estate_root"
         action="action_estate_dashboard"
-        sequence="99" />
+        sequence="98" />
+    
+    <!-- Clicker game -->
+    <menuitem id="menu_estate_clicker_game"
+        name="Clicker Game"
+        parent="menu_estate_root"
+        action="action_clicker_game"
+        sequence="999"/>
 
 </odoo>

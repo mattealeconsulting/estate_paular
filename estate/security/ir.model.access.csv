@@ -7,3 +7,4 @@ access_estate_property_tag_user,estate.property.tag.user,model_estate_property_t
 access_estate_property_tag_manager,estate.property.tag.manager,model_estate_property_tag,estate.group_estate_manager,1,1,1,1
 access_estate_property_offer_user,estate.property.offer.user,model_estate_property_offer,estate.group_estate_user,1,1,1,0
 access_estate_property_offer_manager,estate.property.offer.manager,model_estate_property_offer,estate.group_estate_manager,1,1,1,1
+access_estate_clicker_profile_user,estate.clicker.profile.user,model_estate_clicker_profile,base.group_user,1,1,1,1
