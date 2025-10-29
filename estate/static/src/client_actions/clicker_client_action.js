@@ -17,12 +17,13 @@ export class ClickerClientAction extends Component {
   }
 
   increment() { this.clicker.add(10); }
-  reset()     { this.clicker.reset(); }
-  buyBot()    { this.clicker.buyClickBot(); }
+  reset() { this.clicker.reset(); }
+  buyBot() { this.clicker.buyClickBot(); }
   buyBigBot() { this.clicker.buyBigBot(); }
-  buyPower()  { this.clicker.buyPower(); }
-  buyTree()   { this.clicker.buyTree(); }
-  rollReward(){ this.clicker.rollReward(); }
+  buyPower() { this.clicker.buyPower(); }
+  buyTree() { this.clicker.buyTree(); }
+  buyPeachTree() { this.clicker.buyPeachTree(); }
+  rollReward() { this.clicker.rollReward(); }
 }
 
 registry.category("actions").add("estate.clicker_game_action", ClickerClientAction);

@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
   <t t-name="estate.ClickerSystrayDropdown" owl="1">
-    <Dropdown class="o_clicker_systray" position="'bottom-end'">
-      <button type="button" class="btn btn-link o_no_caret o_menu_entry" t-ref="button">
-        <span class="me-1 d-inline-flex align-items-center">
-          <i class="fa fa-mouse-pointer me-1"/>
-          <ClickValue t-props="{ value: s.clicks }"/>
-        </span>
-        <span class="me-2">,</span>
-        <span class="me-1 d-inline-flex align-items-center">
-          <i class="fa fa-tree me-1"/>
-          <t t-esc="totalTrees"/>
-        </span>
-        <span class="me-2">,</span>
-        <span class="d-inline-flex align-items-center">
-          <i class="fa fa-apple me-1"/>
-          <t t-esc="totalFruits"/>
-        </span>
-      </button>
-
-      <t t-set-slot="content">
-        <DropdownItem class="py-2" t-on-click="openGame">
-          <span class="fw-semibold">
-            <i class="fa fa-gamepad me-2"/>Open the clicker game
+    <span class="o_clicker_systray">
+      <Dropdown position="'bottom-end'">
+        <button type="button" class="btn btn-link o_no_caret o_menu_entry" t-ref="button">
+          <span class="me-1 d-inline-flex align-items-center">
+            <i class="fa fa-mouse-pointer me-1"/>
+            <ClickValue t-props="{ value: s.clicks }"/>
           </span>
-        </DropdownItem>
-
-        <DropdownItem class="py-2"
-                      t-on-click="buyClickBot"
-                      disabled="s.clicks &lt; clicker.BOT_COST">
-          <span class="fw-semibold">
-            <i class="fa fa-robot me-2"/>Buy a ClickBot
+          <span class="me-2">,</span>
+          <span class="me-1 d-inline-flex align-items-center">
+            <i class="fa fa-tree me-1"/>
+            <t t-esc="totalTrees"/>
           </span>
-        </DropdownItem>
+          <span class="me-2">,</span>
+          <span class="d-inline-flex align-items-center">
+            <i class="fa fa-apple me-1"/>
+            <t t-esc="totalFruits"/>
+          </span>
+        </button>
 
-        <DropdownItem class="disabled"><t t-esc="s.pearTrees"/>x pearTree</DropdownItem>
-        <DropdownItem class="disabled"><t t-esc="s.cherryTrees"/>x cherryTree</DropdownItem>
-        <DropdownItem class="disabled"><t t-esc="s.pearFruits"/>x pear</DropdownItem>
-        <DropdownItem class="disabled"><t t-esc="s.cherryFruits"/>x cherry</DropdownItem>
-      </t>
-    </Dropdown>
+        <t t-set-slot="content">
+          <DropdownItem class="py-2" t-on-click="openGame">
+            <span class="fw-semibold">
+              <i class="fa fa-gamepad me-2"/>Open the clicker game
+            </span>
+          </DropdownItem>
+
+          <DropdownItem class="py-2"
+                        t-on-click="buyClickBot"
+                        disabled="s.clicks &lt; clicker.BOT_COST">
+            <span class="fw-semibold">
+              <i class="fa fa-robot me-2"/>Buy a ClickBot
+            </span>
+          </DropdownItem>
+
+          <DropdownItem class="disabled"><t t-esc="s.pearTrees"/>x pearTree</DropdownItem>
+          <DropdownItem class="disabled"><t t-esc="s.cherryTrees"/>x cherryTree</DropdownItem>
+          <DropdownItem class="disabled"><t t-esc="s.peachTrees"/>x peachTree</DropdownItem>
+          <DropdownItem class="disabled"><t t-esc="s.pearFruits"/>x pear</DropdownItem>
+          <DropdownItem class="disabled"><t t-esc="s.cherryFruits"/>x cherry</DropdownItem>
+          <DropdownItem class="disabled"><t t-esc="s.peachFruits"/>x peach</DropdownItem>
+        </t>
+      </Dropdown>
+    </span>
   </t>
 </templates>

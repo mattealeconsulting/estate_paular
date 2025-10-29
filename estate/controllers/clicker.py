@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-# /estate/controllers/clicker.py
 from odoo import http
 from odoo.http import request
 
 KEY_TPL = "estate.clicker.state.%s"
 
 def _default_state():
-    # reflectă exact shape-ul folosit în frontend
     return {
         "clicks": 0,
         "power": 1,
@@ -17,6 +15,8 @@ def _default_state():
         "cherryTrees": 0,
         "pearFruits": 0,
         "cherryFruits": 0,
+        "peachTrees": 0,
+        "peachFruits": 0,
     }
 
 class EstateClickerController(http.Controller):

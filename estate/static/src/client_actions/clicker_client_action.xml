@@ -95,6 +95,7 @@
                   </div>
                 </div>
 
+                <!-- Cherry trees -->
                 <div class="col-md-6">
                   <div class="card">
                     <div class="card-body">
@@ -107,6 +108,23 @@
                               t-on-click="buyTree"
                               t-att-disabled="state.clicks &lt; clicker.TREE_COST">
                         Buy cherryTree (<t t-esc="clicker.TREE_COST"/> clicks)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center gap-2 mb-3">
+                        <strong t-esc="state.peachTrees"/>
+                        <span>x peachTree (1x peach /30seconds)</span>
+                        <i class="fa fa-tree"/>
+                      </div>
+                      <button class="btn btn-secondary w-100"
+                              t-on-click="buyPeachTree"
+                              t-att-disabled="state.clicks &lt; clicker.PEACH_TREE_COST">
+                        Buy peachTree (<t t-esc="clicker.PEACH_TREE_COST"/> clicks)
                       </button>
                     </div>
                   </div>
@@ -125,6 +143,11 @@
                 <div class="col-auto">
                   <div class="card"><div class="card-body text-center">
                     <strong t-esc="state.cherryFruits"/><span>x cherry</span>
+                  </div></div>
+                </div>
+                <div class="col-auto">
+                  <div class="card"><div class="card-body text-center">
+                    <strong t-esc="state.peachFruits"/><span>x peach</span>
                   </div></div>
                 </div>
               </div>

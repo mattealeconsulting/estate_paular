@@ -3,31 +3,41 @@
 import { reactive } from "@odoo/owl";
 import { browser } from "@web/core/browser/browser";
 
-export const STATE_VERSION = 3;
+export const STATE_VERSION = 4;
 export const STORAGE_KEY = "estate_clicker_state";
 
 export const STATE_MIGRATIONS = [
-    // {
-    //     fromVersion: 1,
-    //     toVersion: 2,
-    //     apply(s) {
-    //         if (s.power == null) s.power = 1;
-    //         s.version = 2;
-    //         return s;
-    //     },
-    // },
-    // {
-    //     fromVersion: 2,
-    //     toVersion: 3,
-    //     apply(s) {
-    //         s.pearTrees ??= 0;
-    //         s.cherryTrees ??= 0;
-    //         s.pearFruits ??= 0;
-    //         s.cherryFruits ??= 0;
-    //         s.version = 3;
-    //         return s;
-    //     },
-    // },
+    {
+        fromVersion: 1,
+        toVersion: 2,
+        apply(s) {
+            if (s.power == null) s.power = 1;
+            s.version = 2;
+            return s;
+        },
+    },
+    {
+        fromVersion: 2,
+        toVersion: 3,
+        apply(s) {
+            s.pearTrees ??= 0;
+            s.cherryTrees ??= 0;
+            s.pearFruits ??= 0;
+            s.cherryFruits ??= 0;
+            s.version = 3;
+            return s;
+        },
+    },
+    {
+        fromVersion: 3,
+        toVersion: 4,
+        apply(s) {
+            s.peachTrees ??= 0;
+            s.peachFruits ??= 0;
+            s.version = 4;
+            return s;
+        },
+    },
 ];
 
 export function migrateState(raw) {
@@ -56,6 +66,7 @@ export const BOT_COST = 1_000;
 export const BIGBOT_COST = 5_000;
 export const POWER_COST = 50_000;
 export const TREE_COST = 1_000_000;
+export const PEACH_TREE_COST = 1_500_000;
 
 const BOT_TICK_MS = 10_000;
 const BOT_TICK_BASE = 10;
@@ -64,7 +75,6 @@ const BIGBOT_TICK_BASE = 100;
 const TREE_TICK_MS = 30_000;
 const FRUIT_PER_TICK_PER_TREE = 1;
 
-// Rewards - static import
 import { clickerRewards } from "@estate/rewards/rewards_registry";
 
 export class ClickerModel {
@@ -81,9 +91,11 @@ export class ClickerModel {
 
             pearTrees: 0,
             cherryTrees: 0,
+            peachTrees: 0,
 
             pearFruits: 0,
             cherryFruits: 0,
+            peachFruits: 0,
         });
 
         this._listeners = new Set();
@@ -125,8 +137,10 @@ export class ClickerModel {
         this.state.bigBots = 0;
         this.state.pearTrees = 0;
         this.state.cherryTrees = 0;
+        this.state.peachTrees = 0;
         this.state.pearFruits = 0;
         this.state.cherryFruits = 0;
+        this.state.peachFruits = 0;
         this.#save();
     }
 
@@ -164,6 +178,13 @@ export class ClickerModel {
         this.#save();
     }
 
+    buyPeachTree() {
+        if (this.state.clicks < PEACH_TREE_COST) return;
+        this.state.clicks -= PEACH_TREE_COST;
+        this.state.peachTrees++;
+        this.#save();
+    }
+
     // Grants
 
     grantClicks(n) {
@@ -194,10 +215,14 @@ export class ClickerModel {
     // Getters
 
     get totalTrees() {
-        return (this.state.pearTrees || 0) + (this.state.cherryTrees || 0);
+        return (this.state.pearTrees || 0)
+            + (this.state.cherryTrees || 0)
+            + (this.state.peachTrees || 0);
     }
     get totalFruits() {
-        return (this.state.pearFruits || 0) + (this.state.cherryFruits || 0);
+        return (this.state.pearFruits || 0)
+            + (this.state.cherryFruits || 0)
+            + (this.state.peachFruits || 0);
     }
 
     // Rewards
@@ -292,7 +317,7 @@ export class ClickerModel {
         } catch {
         }
     }
-
+    
     #load() {
         try {
             const raw = browser.localStorage.getItem(STORAGE_KEY);
@@ -309,8 +334,10 @@ export class ClickerModel {
             this.state.bigBots = Number.isFinite(+migrated.bigBots) ? +migrated.bigBots : 0;
             this.state.pearTrees = Number.isFinite(+migrated.pearTrees) ? +migrated.pearTrees : 0;
             this.state.cherryTrees = Number.isFinite(+migrated.cherryTrees) ? +migrated.cherryTrees : 0;
+            this.state.peachTrees = Number.isFinite(+migrated.peachTrees) ? +migrated.peachTrees : 0;
             this.state.pearFruits = Number.isFinite(+migrated.pearFruits) ? +migrated.pearFruits : 0;
             this.state.cherryFruits = Number.isFinite(+migrated.cherryFruits) ? +migrated.cherryFruits : 0;
+            this.state.peachFruits = Number.isFinite(+migrated.peachFruits) ? +migrated.peachFruits : 0;
 
             if (this.state.version !== parsed.version) {
                 this.#save();
@@ -325,7 +352,7 @@ export class ClickerModel {
         const isInteractive = (el) =>
             el.closest(
                 ".o_clicker_systray," +
-                ".dropdown-menu," + 
+                ".dropdown-menu," +
                 ".o-dropdown--menu," +
                 ".modal," +
                 ".o_control_panel," +
@@ -377,10 +404,11 @@ export class ClickerModel {
     #attachTreesTimer() {
         if (!window.__estateClickerTreesTimer__) {
             window.__estateClickerTreesTimer__ = setInterval(() => {
-                const { pearTrees, cherryTrees } = this.state;
-                if (pearTrees || cherryTrees) {
+                const { pearTrees, cherryTrees, peachTrees } = this.state;
+                if (pearTrees || cherryTrees || peachTrees) {
                     this.state.pearFruits += pearTrees * FRUIT_PER_TICK_PER_TREE;
                     this.state.cherryFruits += cherryTrees * FRUIT_PER_TICK_PER_TREE;
+                    this.state.peachFruits += peachTrees * FRUIT_PER_TICK_PER_TREE;
                     this.#save();
                 }
             }, TREE_TICK_MS);
