@@ -32,7 +32,6 @@ class EstateClickerController(http.Controller):
         try:
             import json
             data = json.loads(raw)
-            # întoarcem doar câmpurile așteptate
             base = _default_state()
             base.update({k: data.get(k, base[k]) for k in base.keys()})
             return base
@@ -48,7 +47,6 @@ class EstateClickerController(http.Controller):
         ICP = request.env["ir.config_parameter"].sudo()
         try:
             import json
-            # filtrează doar câmpurile cunoscute
             base = _default_state()
             base.update({k: state.get(k, base[k]) for k in base.keys()})
             ICP.set_param(key, json.dumps(base))
