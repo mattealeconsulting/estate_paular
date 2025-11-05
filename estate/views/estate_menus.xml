@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Root app menu -->
-    <menuitem id="menu_estate_root" name="Real Estate" groups="estate.group_estate_user" />
+    <menuitem id="menu_estate_root" name="Real Estate" />
 
     <!-- Advertisments -->
     <menuitem id="menu_estate_properties"
@@ -14,7 +14,7 @@
     <!-- Kanban -->
     <menuitem id="menu_estate_properties_kanban"
         name="Properties"
-        parent="estate.menu_estate_root"
+        parent="menu_estate_root"
         action="estate.action_estate_properties_kanban"
         sequence="5" />
 
@@ -22,7 +22,7 @@
     <menuitem id="menu_estate_playground"
         name="OWL Playground"
         parent="menu_estate_root"
-        action="action_estate_playground"
+        action="estate.action_estate_playground"
         sequence="97"
         groups="estate.group_estate_manager" />
 
@@ -38,9 +38,9 @@
         name="Property Tags" action="estate.action_estate_property_tag" />
 
 
-    <record id="menu_estate_properties" model="ir.ui.menu">
+    <!-- <record id="menu_estate_properties" model="ir.ui.menu">
         <field name="active" eval="False" />
-    </record>
+    </record> -->
 
     <!-- Dashboard -->
     <menuitem id="menu_estate_dashboard"
