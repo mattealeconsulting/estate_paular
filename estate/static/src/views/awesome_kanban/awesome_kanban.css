@@ -1,0 +1,8 @@
+.o_search_panel {
+    flex-shrink: 0;
+}
+
+.o_kanban_renderer {
+    flex: 1;
+    min-width: 0;
+}

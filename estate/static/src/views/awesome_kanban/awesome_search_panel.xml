@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.AwesomeSearchPanelComponent">
+    <div class="o_search_panel d-flex flex-column bg-view border-end h-100 overflow-auto" style="width: 250px;">
+      <CustomerList
+        customers="props.controller.state.customers"
+        selectCustomer="(id, name) => props.controller.selectCustomer(id, name)"
+        selectedCustomerId="props.controller.state.selectedCustomerId"
+        clearFilter="() => props.controller.clearFilter()"
+        activeCustomersOnly="props.controller.state.activeCustomersOnly"
+        toggleActiveCustomers="() => props.controller.toggleActiveCustomers()"/>
+    </div>
+  </t>
+</templates>

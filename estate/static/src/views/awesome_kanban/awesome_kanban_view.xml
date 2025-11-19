@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.AwesomeKanbanView" t-inherit="web.KanbanView" owl="1">
+
+    <xpath expr="//div[@t-att-class='className']" position="replace">
+      <div t-att-class="className" t-ref="root">
+        <Layout display="{ controlPanel: true, searchPanel: false }">
+          <t t-set-slot="control-panel-create-button">
+            <t t-if="canCreate and props.showButtons">
+              <button type="button" class="btn btn-primary o-kanban-button-new" accesskey="c" t-on-click="() => this.createRecord()" data-bounce-button="">
+                New
+              </button>
+            </t>
+          </t>
+          <t t-set-slot="layout-buttons">
+            <t t-call="{{ props.buttonTemplate }}"/>
+          </t>
+          <t t-set-slot="control-panel-additional-actions">
+            <CogMenu/>
+          </t>
+          <t t-set-slot="layout-actions">
+            <SearchBar toggler="searchBarToggler"/>
+          </t>
+          <t t-set-slot="control-panel-navigation-additional">
+            <t t-component="searchBarToggler.component" t-props="searchBarToggler.props"/>
+          </t>
+          <div class="d-flex flex-grow-1" style="min-height: 0;">
+            <AwesomeSearchPanel controller="this"/>
+            <t t-component="props.Renderer"
+              list="model.root"
+              archInfo="props.archInfo"
+              readonly="true"
+              openRecord.bind="openRecord"
+              onAdd="props.onAdd"
+            />
+          </div>
+        </Layout>
+      </div>
+    </xpath>
+  </t>
+</templates>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="estate.CustomerList">
+    <div class="o_search_panel_section p-2">
+      <header class="o_search_panel_section_header text-uppercase mb-2">
+        <i class="fa fa-filter me-1"/>
+        <b>Buyers</b>
+      </header>
+
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="activeCustomersCheckbox" t-att-checked="props.activeCustomersOnly" t-on-change="onActiveCustomersChange"/>
+        <label class="form-check-label o_cursor_pointer" for="activeCustomersCheckbox">
+          Active customers
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <input type="text" class="form-control form-control-sm" placeholder="Search customers..." t-model="state.searchString" t-on-input="onSearchStringChange"/>
+      </div>
+
+      <div class="mb-2">
+        <Pager t-props="pagerProps"/>
+      </div>
+
+      <ul class="list-unstyled mb-0">
+        <li class="o_search_panel_category_value">
+          <div class="form-check w-100">
+            <input type="radio" class="form-check-input" t-att-checked="props.selectedCustomerId === null" t-on-click="() => this.onAllClick()"/>
+            <label class="form-check-label o_cursor_pointer w-100 d-flex align-items-center" t-on-click="() => this.onAllClick()">
+              <i class="fa fa-list me-2"/>
+              <span>All Properties</span>
+            </label>
+          </div>
+        </li>
+
+        <li t-foreach="displayedCustomers" t-as="customer" t-key="customer.id" class="o_search_panel_category_value">
+          <div class="form-check w-100">
+            <input type="radio" class="form-check-input" t-att-checked="props.selectedCustomerId === customer.id" t-on-click="() => this.onCustomerClick(customer)"/>
+            <label class="form-check-label o_cursor_pointer w-100 d-flex align-items-center" t-on-click="() => this.onCustomerClick(customer)">
+              <i class="fa fa-user me-2"/>
+              <span t-esc="customer.name"/>
+            </label>
+          </div>
+        </li>
+      </ul>
+
+      <div t-if="displayedCustomers.length === 0" class="text-muted fst-italic p-2">
+        No buyers found
+      </div>
+    </div>
+  </t>
+</templates>

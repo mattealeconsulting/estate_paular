@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_estate_property_kanban_awesome" model="ir.ui.view">
+        <field name="name">estate.property.kanban.awesome</field>
+        <field name="model">estate.property</field>
+        <field name="inherit_id" ref="estate.view_estate_property_kanban"/>
+        <field name="arch" type="xml">
+            <kanban position="attributes">
+                <attribute name="js_class">awesome_kanban</attribute>
+            </kanban>
+        </field>
+    </record>
+</odoo>

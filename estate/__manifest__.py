@@ -13,11 +13,11 @@
         "views/estate_actions.xml",
         "views/estate_property_views.xml",
         "views/estate_kanban_views.xml",
+        "views/estate_awesome_kanban.xml",
         "views/estate_property_type_views.xml",
         "views/estate_property_tag_views.xml",
         "views/estate_property_offer_views.xml",
         "views/res_users_views.xml",
-        "views/estate_menus.xml",
     ],
     "demo": [
         "demo/estate_demo.xml",
@@ -58,6 +58,14 @@
             # Systray
             "estate/static/src/systray/clicker_systray_item.xml",
             "estate/static/src/systray/clicker_systray_item.js",
+
+            #Awesome Kanban
+            "estate/static/src/views/awesome_kanban/awesome_kanban_view.xml",
+            "estate/static/src/views/awesome_kanban/awesome_kanban_controller.js",
+            "estate/static/src/views/awesome_kanban/customer_list.xml",
+            "estate/static/src/views/awesome_kanban/awesome_search_panel.xml",
+            "estate/static/src/views/awesome_kanban/awesome_search_panel.js",
+
         ],
 
         "estate.dashboard_assets": [
