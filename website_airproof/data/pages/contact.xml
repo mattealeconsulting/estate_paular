@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Disable default Odoo contact page -->
+    <record id="website.contactus" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+
+    <!-- Contact Page View -->
+    <record id="page_contact_view" model="ir.ui.view">
+        <field name="name">Contact us</field>
+        <field name="type">qweb</field>
+        <field name="arch" type="xml">
+            <t t-name="website_airproof.page_contact">
+                <t t-call="website.layout">
+                    <t t-set="additional_title">Contact us</t>
+                    <div id="wrap" class="oe_structure">
+                        <!-- Hero Section -->
+                        <section class="s_title o_cc o_cc3 pt88 pb88 oe_img_bg o_bg_img_center"
+                                 data-snippet="s_title"
+                                 style="background-image: url('/web/image/website_airproof.img_topview');">
+                            <div class="o_we_bg_filter bg-black-50"/>
+                            <div class="container">
+                                <h1 class="text-center">Contact us</h1>
+                            </div>
+                        </section>
+
+                        <!-- Contact Form & Details Section -->
+                        <section class="s_text_block pb40" data-snippet="s_text_block">
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Contact Form -->
+                                    <div class="col-lg-8 pt40">
+                                        <p>Tell us about your issue so we can help you more quickly.</p>
+                                        <section class="s_website_form" data-snippet="s_website_form">
+                                            <form id="contactus_form"
+                                                  action="/website/form/"
+                                                  method="post"
+                                                  enctype="multipart/form-data"
+                                                  class="o_mark_required"
+                                                  data-mark="*"
+                                                  data-model_name="mail.mail"
+                                                  data-success-mode="message"
+                                                  data-pre-fill="true">
+                                                <div class="s_website_form_rows row s_col_no_bgcolor">
+                                                    <!-- Name Field -->
+                                                    <div class="s_website_form_field mb-3 col-12 col-lg-6 s_website_form_required"
+                                                         data-type="char">
+                                                        <label class="s_website_form_label" for="contact_name">
+                                                            <span class="s_website_form_label_content">Name</span>
+                                                            <span class="s_website_form_mark"> *</span>
+                                                        </label>
+                                                        <input type="text"
+                                                               class="form-control s_website_form_input"
+                                                               name="subject"
+                                                               required="required"
+                                                               id="contact_name"
+                                                               data-fill-with="name"/>
+                                                    </div>
+
+                                                    <!-- Email Field -->
+                                                    <div class="s_website_form_field mb-3 col-12 col-lg-6 s_website_form_required"
+                                                         data-type="email">
+                                                        <label class="s_website_form_label" for="contact_email">
+                                                            <span class="s_website_form_label_content">Email address</span>
+                                                            <span class="s_website_form_mark"> *</span>
+                                                        </label>
+                                                        <input type="email"
+                                                               class="form-control s_website_form_input"
+                                                               name="email_from"
+                                                               required="required"
+                                                               id="contact_email"
+                                                               data-fill-with="email"/>
+                                                    </div>
+
+                                                    <!-- Company Field -->
+                                                    <div class="s_website_form_field mb-3 col-12 col-lg-6"
+                                                         data-type="char">
+                                                        <label class="s_website_form_label" for="contact_company">
+                                                            <span class="s_website_form_label_content">Company name</span>
+                                                        </label>
+                                                        <input type="text"
+                                                               class="form-control s_website_form_input"
+                                                               name="company_name"
+                                                               placeholder="Airproof Ltd"
+                                                               id="contact_company"
+                                                               data-fill-with="commercial_company_name"/>
+                                                    </div>
+
+                                                    <!-- Message Field -->
+                                                    <div class="s_website_form_field mb-3 col-12 s_website_form_custom s_website_form_required"
+                                                         data-type="text">
+                                                        <label class="s_website_form_label" for="contact_message">
+                                                            <span class="s_website_form_label_content">Message</span>
+                                                            <span class="s_website_form_mark"> *</span>
+                                                        </label>
+                                                        <textarea class="form-control s_website_form_input"
+                                                                  name="body_html"
+                                                                  required="required"
+                                                                  id="contact_message"
+                                                                  rows="6"/>
+                                                    </div>
+
+                                                    <!-- Hidden email_to field -->
+                                                    <input type="hidden" name="email_to" value="contact@airproof.com"/>
+
+                                                    <!-- Submit Button -->
+                                                    <div class="mb-0 py-2 col-12 s_website_form_submit text-start">
+                                                        <button type="submit" class="btn btn-primary btn-lg s_website_form_send">
+                                                            Send message
+                                                        </button>
+                                                        <span id="s_website_form_result"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <!-- Success Message -->
+                                            <div class="s_website_form_end_message d-none">
+                                                <section class="s_text_block pt64 pb64 o_cc o_cc2" data-snippet="s_text_block">
+                                                    <div class="container text-center">
+                                                        <img class="pb-4"
+                                                             src="/web/image/website_airproof.img_check"
+                                                             alt="Success"
+                                                             loading="lazy"/>
+                                                        <h2 class="fw-bold">Thank you for your message</h2>
+                                                        <p class="lead fw-bold">
+                                                            Our team will message you back as soon as possible.<br/>
+                                                            In the meantime we invite you to visit our <a href="/">website</a>.
+                                                        </p>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </section>
+                                    </div>
+
+                                    <!-- Contact Details Sidebar -->
+                                    <div class="col-lg-4 pt40">
+                                        <h2>Contact details</h2>
+                                        <address>
+                                            <strong>Airproof Ltd</strong><br/>
+                                            Rue du Laid Burniat, 5<br/>
+                                            1348 Ottignies-Louvain-la-Neuve
+                                        </address>
+                                        <p class="mb-1">
+                                            <i class="fa fa-phone me-2" aria-hidden="true"/>
+                                            <a href="tel:+40761234567">+40 761 234 567</a>
+                                        </p>
+                                        <p class="mb-4">
+                                            <i class="fa fa-envelope me-2" aria-hidden="true"/>
+                                            <a href="mailto:contact@airproof.com">contact@airproof.com</a>
+                                        </p>
+
+                                        <!-- Map -->
+                                        <section class="s_map pb256 pt112"
+                                                 data-map-type="m"
+                                                 data-map-zoom="15"
+                                                 data-snippet="s_map"
+                                                 data-map-address="Rue du Laid Burniat 5, 1348 Ottignies-Louvain-la-Neuve">
+                                            <div class="map_container">
+                                                <iframe class="s_map_embedded rounded"
+                                                        width="100%"
+                                                        height="100%"
+                                                        src="https://maps.google.com/maps?q=Rue%20du%20Laid%20Burniat%205%2C%201348%20Ottignies-Louvain-la-Neuve&amp;t=m&amp;z=15&amp;ie=UTF8&amp;output=embed"
+                                                        loading="lazy"
+                                                        referrerpolicy="no-referrer-when-downgrade"
+                                                        title="Airproof Location"/>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <!-- Contact Page Record -->
+    <record id="page_contact" model="website.page">
+        <field name="name">Contact us</field>
+        <field name="is_published" eval="True"/>
+        <field name="url">/contactus</field>
+        <field name="view_id" ref="page_contact_view"/>
+    </record>
+</odoo>

@@ -1,0 +1,54 @@
+.s_airproof_carousel {
+    .x_carousel_title {
+        font-size: 6.25rem;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 2.5rem;
+        }
+    }
+
+    .x_sticker {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        @include media-breakpoint-down(sm) {
+            width: 200px;
+            height: auto;
+        }
+    }
+
+    .x_bubble {
+        bottom: 10%;
+        right: 15%;
+
+        @include media-breakpoint-down(lg) {
+            > div {
+                margin: 0 0.5rem;
+            }
+        }
+    }
+
+    .x_bubble1 {
+        border: 3px solid o-color('o-color-3');
+        border-radius: 20px 20px 20px 0;
+        box-shadow: 0 4px 60px o-color('o-color-3');
+    }
+
+    .x_bubble2 {
+        border: 3px solid o-color('o-color-1');
+        border-radius: 0 20px 20px 20px;
+        box-shadow: 0 4px 60px o-color('o-color-1');
+    }
+
+    .carousel-indicators li {
+        width: 1rem;
+        height: 1rem;
+        margin-bottom: 0;
+        margin-left: 5px;
+        border: inherit;
+        border-radius: 0;
+        background-color: o-color('o-color-3');
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="colorpicker" model="ir.ui.view">
+        <field name="name">Airproof - Custom Gradients</field>
+        <field name="inherit_id" ref="web_editor.colorpicker"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-name='predefined_gradients']/t[@t-set='gradients']" position="after">
+                <t t-set="gradients" t-value="gradients + ['linear-gradient(0deg, #2980bb 0%, #0b8ee6 100%)']"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

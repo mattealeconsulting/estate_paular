@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- HEADER OPTIONS -->
+    <record id="website.template_header_default" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website.header_call_to_action" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website.header_search_box" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website.header_social_links" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website.header_text_element" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website.header_language_selector" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+    <record id="website.header_language_selector_flag" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+
+    <!-- FOOTER OPTIONS -->
+    <record id="website.footer_custom" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website.footer_no_copyright" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="portal.footer_language_selector" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+
+    <!-- SHOP: PRODUCT LIST OPTIONS -->
+    <record id="website_sale.products_categories" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+    <record id="website_sale.products_categories_top" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website_sale.option_collapse_products_categories" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website_sale.products_attributes" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+    <record id="website_sale.products_design_card" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+    <record id="website_sale.add_grid_or_list_option" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website_sale_wishlist.add_to_wishlist" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+
+    <!-- SHOP: PRODUCT PAGE OPTIONS -->
+    <record id="website_sale.product_quantity" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website_sale.product_custom_text" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website_sale.product_share_buttons" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="website_sale.accordion_more_information" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+    <record id="website_sale_wishlist.product_add_to_wishlist" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

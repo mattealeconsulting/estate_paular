@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Snippets -->
+    <template id="snippets" inherit_id="website.snippets" name="Airproof Snippets">
+        <xpath expr="//snippets[@id='snippet_groups']/*[1]" position="before">
+            <t snippet-group="airproof" t-snippet="website.s_snippet_group" string="Airproof"
+               t-thumbnail="/website_airproof/static/src/img/wbuilder/s-airproof-snippet.svg"/>
+        </xpath>
+        <xpath expr="//snippets[@id='snippet_structure']/*[1]" position="before">
+            <t t-snippet="website_airproof.s_airproof_carousel" string="Airproof Carousel" group="airproof">
+                <keywords>Carousel, slider, hero</keywords>
+            </t>
+            <t t-snippet="website_airproof.s_airproof_latest_news" string="Airproof Latest News" group="airproof">
+                <keywords>Blog, news, articles, posts</keywords>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Product Card -->
+    <template id="dynamic_filter_template_product_product_airproof" name="Airproof Product Card">
+        <t t-foreach="records" t-as="data">
+            <t t-set="record" t-value="data['_record']"/>
+            <div class="o_carousel_product_card card h-100 w-100" t-att-data-add2cart-rerender="data.get('_add2cart_rerender')">
+                <div t-if="is_sample" class="h5 o_ribbon_right bg-primary text-uppercase">Sample</div>
+                <input type="hidden" name="product-id" t-att-data-product-id="record.id"/>
+                <a class="o_carousel_product_img_link" t-att-href="record.website_url">
+                    <img class="o_carousel_product_card_img_top card-img-top" t-att-src="data['image_512']" t-att-alt="record.display_name"/>
+                </a>
+                <i t-if="data.get('_latest_viewed')" class="fa fa-trash o_carousel_product_remove js_remove"/>
+                <div class="o_carousel_product_card_body card-body">
+                    <a t-att-href="record.website_url" class="text-decoration-none text-dark h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="card-title mb-0" t-field="record.display_name"/>
+                            <t t-call="website_sale.price_dynamic_filter_template_product_product"/>
+                        </div>
+                        <span class="small pt-3">
+                            Discover more
+                            <img src="/web/image/website_airproof.img_arrow_small" alt="" class="ms-2"/>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Blog Post Card -->
+    <template id="dynamic_filter_template_blog_post_airproof" name="Airproof Blog Card">
+        <t t-foreach="records" t-as="data">
+            <t t-set="record" t-value="data['_record']"/>
+            <article class="x_blog_card card h-100 border-0">
+                <a t-att-href="record.website_url" class="x_blog_card_img_link">
+                    <div class="x_blog_card_img rounded overflow-hidden">
+                        <t t-set="cover_image" t-value="record.cover_properties.get('background-image', '') if record.cover_properties else ''"/>
+                        <img class="img-fluid w-100"
+                             t-att-src="'/web/image/blog.post/%s/cover_properties' % record.id if cover_image else '/web/image/website_blog.blog_post_cover_placeholder'"
+                             t-att-alt="record.name"/>
+                    </div>
+                </a>
+                <div class="x_blog_card_body pt-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <span t-if="record.blog_id" class="x_blog_category badge bg-o-color-1 text-dark me-2" t-field="record.blog_id.name"/>
+                        <span class="x_blog_date small text-muted" t-field="record.post_date" t-options='{"format": "MMM d, yyyy"}'/>
+                    </div>
+                    <a t-att-href="record.website_url" class="text-decoration-none">
+                        <h5 class="x_blog_title fw-bold text-dark mb-2" t-field="record.name"/>
+                    </a>
+                    <p t-if="record.subtitle" class="x_blog_subtitle text-muted small mb-3" t-field="record.subtitle"/>
+                    <a t-att-href="record.website_url" class="x_blog_link small text-dark fw-bold">
+                        Read more
+                        <img src="/web/image/website_airproof.img_arrow_small" alt="" class="ms-2"/>
+                    </a>
+                </div>
+            </article>
+        </t>
+    </template>
+
+    <!-- Background Shapes -->
+    <template id="snippet_options_background_options" inherit_id="website.snippet_options_background_options" name="Airproof Background Shapes">
+        <xpath expr="//*[hasclass('o_we_bg_shape_menu')]/header/div[last()]" position="inside">
+            <button type="button" class="o_pager_nav_btn p-0 text-uppercase" data-scroll-to="o_scroll_bgshapes_airproof">
+                <span class="w-100">Airproof</span>
+            </button>
+        </xpath>
+        <xpath expr="//*[hasclass('o_we_bg_shape_menu')]/div[hasclass('o_pager_container')]/*[last()]" position="after">
+            <div class="o_scroll_bgshapes_airproof">
+                <we-title>Airproof</we-title>
+                <we-select-page string="Airproof">
+                    <we-button data-shape="illustration/airproof/waves" data-select-label="Waves"/>
+                </we-select-page>
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- MAIN MENU ITEMS -->
+
+    <!-- Drones Mega Menu -->
+    <record id="menu_drones" model="website.menu">
+        <field name="name">Waterproof drones</field>
+        <field name="is_mega_menu" eval="True"/>
+        <field name="parent_id" search="[('url', '=', '/default-main-menu'), ('website_id', '=', 1)]"/>
+        <field name="website_id">1</field>
+        <field name="sequence">10</field>
+        <field name="mega_menu_content" type="html">
+            <section class="s_mega_menu_cards pt24 pb24" style="background-color: #f4f4f4 !important;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 col-sm text-center pt8 pb8">
+                            <a href="/shop?search=Airproof+Mini" class="nav-link p-0">
+                                <img src="/web/image/website_airproof.img_mini" alt="Airproof Mini" class="img-fluid"/>
+                                <div class="p-2"><strong>Airproof Mini</strong></div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-sm text-center pt8 pb8">
+                            <a href="/shop?search=Airproof+Pro" class="nav-link p-0">
+                                <img src="/web/image/website_airproof.img_pro" alt="Airproof Pro" class="img-fluid"/>
+                                <div class="p-2"><strong>Airproof Pro</strong></div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-sm text-center pt8 pb8">
+                            <a href="/shop?search=Airproof+Robin" class="nav-link p-0">
+                                <img src="/web/image/website_airproof.img_robin" alt="Airproof Robin" class="img-fluid"/>
+                                <div class="p-2"><strong>Airproof Robin</strong></div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-sm text-center pt8 pb8">
+                            <a href="/shop?search=Airproof+Falcon" class="nav-link p-0">
+                                <img src="/web/image/website_airproof.img_falcon" alt="Airproof Falcon" class="img-fluid"/>
+                                <div class="p-2"><strong>Airproof Falcon</strong></div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-sm text-center pt8 pb8">
+                            <a href="/shop?search=Airproof+Eagle" class="nav-link p-0">
+                                <img src="/web/image/website_airproof.img_eagle" alt="Airproof Eagle" class="img-fluid"/>
+                                <div class="p-2"><strong>Airproof Eagle</strong></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </field>
+    </record>
+
+    <!-- About Us -->
+    <record id="menu_about" model="website.menu">
+        <field name="name">About us</field>
+        <field name="url">/about-us</field>
+        <field name="parent_id" search="[('url', '=', '/default-main-menu'), ('website_id', '=', 1)]"/>
+        <field name="website_id">1</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- Blog (with submenu) -->
+    <record id="menu_blog" model="website.menu">
+        <field name="name">Blog</field>
+        <field name="parent_id" search="[('url', '=', '/default-main-menu'), ('website_id', '=', 1)]"/>
+        <field name="website_id">1</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="menu_blog_news" model="website.menu">
+        <field name="name">Our latest news</field>
+        <field name="url">/blog/our-latest-news-2</field>
+        <field name="parent_id" ref="menu_blog"/>
+        <field name="website_id">1</field>
+        <field name="sequence">31</field>
+    </record>
+    <record id="menu_blog_tutorials" model="website.menu">
+        <field name="name">Tutorials</field>
+        <field name="url">/blog/tutorials-3</field>
+        <field name="parent_id" ref="menu_blog"/>
+        <field name="website_id">1</field>
+        <field name="sequence">32</field>
+    </record>
+
+    <!-- Contact Us -->
+    <record id="menu_contact" model="website.menu">
+        <field name="name">Contact us</field>
+        <field name="url">/contactus</field>
+        <field name="parent_id" search="[('url', '=', '/default-main-menu'), ('website_id', '=', 1)]"/>
+        <field name="website_id">1</field>
+        <field name="sequence">40</field>
+    </record>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Snippets -->
+    <template id="s_airproof_key_benefits_h2" inherit_id="website.s_key_benefits" primary="True">
+        <xpath expr="//h2" position="replace">
+            <h2 class="display-3-fs">Discover our service</h2>
+        </xpath>
+    </template>
+
+    <!-- Page Template Snippets -->
+    <template id="new_page_template_airproof_services_s_key_benefits_h2" inherit_id="website_airproof.s_airproof_key_benefits_h2" primary="True"/>
+    <template id="new_page_template_airproof_services_s_parallax" inherit_id="website.s_parallax" primary="True"/>
+    <template id="new_page_template_airproof_services_s_call_to_action" inherit_id="website.s_call_to_action" primary="True"/>
+    <template id="new_page_template_airproof_services_s_airproof_carousel" inherit_id="website_airproof.s_airproof_carousel" primary="True"/>
+
+    <!-- Services Page Template -->
+    <template id="new_page_template_sections_airproof_services" name="Airproof Services">
+        <div id="wrap">
+            <t t-snippet-call="website_airproof.new_page_template_airproof_services_s_parallax"/>
+            <t t-snippet-call="website_airproof.new_page_template_airproof_services_s_key_benefits_h2"/>
+            <t t-snippet-call="website_airproof.new_page_template_airproof_services_s_call_to_action"/>
+            <t t-snippet-call="website_airproof.new_page_template_airproof_services_s_airproof_carousel"/>
+        </div>
+    </template>
+
+    <!-- Template Group -->
+    <template id="new_page_template_groups" inherit_id="website.new_page_template_groups" name="Airproof Template Group">
+        <xpath expr="//div[@id='custom']" position="after">
+            <div id="airproof">Airproof</div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Latest News Snippet -->
+    <template id="s_airproof_latest_news" name="Airproof Latest News">
+        <section class="s_airproof_latest_news pt64 pb64">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <h2 class="fw-bold">Our Latest News</h2>
+                        <p class="text-muted">Stay updated with the latest from Airproof</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <section class="s_dynamic_snippet s_dynamic_snippet_blog s_blog_post_airproof"
+                                 data-snippet="s_dynamic_snippet_blog"
+                                 data-filter-by-blog-id="-1"
+                                 data-number-of-records="3"
+                                 data-template-key="website_airproof.dynamic_filter_template_blog_post_airproof">
+                            <div class="dynamic_snippet_template"/>
+                        </section>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <a href="/blog" class="btn btn-secondary btn-lg">
+                            View all articles
+                            <img src="/web/image/website_airproof.img_arrow" alt="" class="img-fluid ms-2"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Blog -->
+    <record id="blog_airproof" model="blog.blog">
+        <field name="name">Airproof News</field>
+        <field name="subtitle">Latest updates from the world of drones</field>
+    </record>
+
+    <!-- Blog Post 1 -->
+    <record id="blog_post_1" model="blog.post">
+        <field name="name">5 Tips for Better Aerial Photography</field>
+        <field name="subtitle">Master the art of capturing stunning shots from above</field>
+        <field name="blog_id" ref="blog_airproof"/>
+        <field name="is_published" eval="True"/>
+        <field name="post_date" eval="(DateTime.now() - relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+        <field name="content" type="html">
+            <section class="s_text_block pt32 pb32">
+                <div class="container">
+                    <p class="lead">Aerial photography opens up a whole new perspective. Here are our top tips.</p>
+                    <h3>1. Shoot During Golden Hour</h3>
+                    <p>The soft light during sunrise and sunset creates dramatic shadows and warm tones.</p>
+                    <h3>2. Use ND Filters</h3>
+                    <p>Neutral density filters help achieve smoother footage and better exposure control.</p>
+                    <h3>3. Plan Your Flight Path</h3>
+                    <p>Scout your location beforehand and plan interesting angles and movements.</p>
+                </div>
+            </section>
+        </field>
+    </record>
+
+    <!-- Blog Post 2 -->
+    <record id="blog_post_2" model="blog.post">
+        <field name="name">Introducing the Airproof Robin</field>
+        <field name="subtitle">Our most advanced waterproof drone yet</field>
+        <field name="blog_id" ref="blog_airproof"/>
+        <field name="is_published" eval="True"/>
+        <field name="post_date" eval="(DateTime.now() - relativedelta(days=5)).strftime('%Y-%m-%d')"/>
+        <field name="content" type="html">
+            <section class="s_text_block pt32 pb32">
+                <div class="container">
+                    <p class="lead">The Airproof Robin - designed for professionals who don't let weather stop them.</p>
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>IP67 waterproof rating</li>
+                        <li>4K 60fps camera</li>
+                        <li>45 minutes flight time</li>
+                        <li>10km transmission range</li>
+                    </ul>
+                </div>
+            </section>
+        </field>
+    </record>
+
+    <!-- Blog Post 3 -->
+    <record id="blog_post_3" model="blog.post">
+        <field name="name">Drone Regulations: What You Need to Know</field>
+        <field name="subtitle">Stay compliant and fly safely in 2025</field>
+        <field name="blog_id" ref="blog_airproof"/>
+        <field name="is_published" eval="True"/>
+        <field name="post_date" eval="(DateTime.now() - relativedelta(days=10)).strftime('%Y-%m-%d')"/>
+        <field name="content" type="html">
+            <section class="s_text_block pt32 pb32">
+                <div class="container">
+                    <p class="lead">Understanding drone regulations is essential for every pilot.</p>
+                    <h3>Key Points</h3>
+                    <ul>
+                        <li>Register drones over 250g</li>
+                        <li>Avoid no-fly zones near airports</li>
+                        <li>Maximum altitude: 120m (400ft)</li>
+                        <li>Keep drone within visual range</li>
+                    </ul>
+                </div>
+            </section>
+        </field>
+    </record>
+</odoo>

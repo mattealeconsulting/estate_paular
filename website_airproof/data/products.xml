@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- PRODUCT ATTRIBUTES   -->
+
+    <!-- Weight Attribute -->
+    <record id="attr_weight" model="product.attribute">
+        <field name="name">Weight</field>
+        <field name="display_type">radio</field>
+        <field name="create_variant">no_variant</field>
+        <field name="visibility">visible</field>
+    </record>
+    <record id="attr_weight_200g" model="product.attribute.value">
+        <field name="name">200g</field>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="sequence">1</field>
+    </record>
+    <record id="attr_weight_400g" model="product.attribute.value">
+        <field name="name">400g</field>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="sequence">2</field>
+    </record>
+    <record id="attr_weight_500g" model="product.attribute.value">
+        <field name="name">500g</field>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="sequence">3</field>
+    </record>
+    <record id="attr_weight_1kg" model="product.attribute.value">
+        <field name="name">1kg</field>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="sequence">4</field>
+    </record>
+
+    <!-- Max Speed Attribute -->
+    <record id="attr_speed" model="product.attribute">
+        <field name="name">Max Speed</field>
+        <field name="display_type">radio</field>
+        <field name="create_variant">no_variant</field>
+        <field name="visibility">visible</field>
+    </record>
+    <record id="attr_speed_50kmh" model="product.attribute.value">
+        <field name="name">50 km/h</field>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="sequence">1</field>
+    </record>
+    <record id="attr_speed_70kmh" model="product.attribute.value">
+        <field name="name">70 km/h</field>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="sequence">2</field>
+    </record>
+    <record id="attr_speed_90kmh" model="product.attribute.value">
+        <field name="name">90 km/h</field>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="sequence">3</field>
+    </record>
+    <record id="attr_speed_120kmh" model="product.attribute.value">
+        <field name="name">120 km/h</field>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="sequence">4</field>
+    </record>
+
+    <!-- Video Transmission Attribute -->
+    <record id="attr_video" model="product.attribute">
+        <field name="name">Video Transmission System</field>
+        <field name="display_type">radio</field>
+        <field name="create_variant">no_variant</field>
+        <field name="visibility">visible</field>
+    </record>
+    <record id="attr_video_ocusync2" model="product.attribute.value">
+        <field name="name">OcuSync 2.0</field>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="sequence">1</field>
+    </record>
+    <record id="attr_video_ocusync3" model="product.attribute.value">
+        <field name="name">OcuSync 3.0</field>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="sequence">2</field>
+    </record>
+    <record id="attr_video_ocusync4" model="product.attribute.value">
+        <field name="name">OcuSync 4.0</field>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="sequence">3</field>
+    </record>
+
+    <!-- Camera Attribute -->
+    <record id="attr_camera" model="product.attribute">
+        <field name="name">Camera</field>
+        <field name="display_type">radio</field>
+        <field name="create_variant">no_variant</field>
+        <field name="visibility">visible</field>
+    </record>
+    <record id="attr_camera_1080p" model="product.attribute.value">
+        <field name="name">1080p HD</field>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="sequence">1</field>
+    </record>
+    <record id="attr_camera_4k" model="product.attribute.value">
+        <field name="name">4K Ultra HD</field>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="sequence">2</field>
+    </record>
+    <record id="attr_camera_5k" model="product.attribute.value">
+        <field name="name">5.2K Pro</field>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="sequence">3</field>
+    </record>
+    <record id="attr_camera_8k" model="product.attribute.value">
+        <field name="name">8K Cinema</field>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="sequence">4</field>
+    </record>
+
+    <!-- PRODUCT CATEGORIES   -->
+
+    <record id="categ_drones" model="product.public.category">
+        <field name="name">Drones</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="categ_camera_drones" model="product.public.category">
+        <field name="name">Camera drones</field>
+        <field name="parent_id" ref="categ_drones"/>
+        <field name="sequence">11</field>
+    </record>
+    <record id="categ_waterproof_drones" model="product.public.category">
+        <field name="name">Waterproof drones</field>
+        <field name="parent_id" ref="categ_drones"/>
+        <field name="sequence">12</field>
+    </record>
+    <record id="categ_accessories" model="product.public.category">
+        <field name="name">Accessories</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="categ_warranties" model="product.public.category">
+        <field name="name">Warranties</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- PRODUCTS: DRONES     -->
+
+    <!-- Airproof Mini -->
+    <record id="drone_mini" model="product.template">
+        <field name="name">Airproof Mini</field>
+        <field name="type">consu</field>
+        <field name="list_price">180.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_waterproof_drones'), ref('categ_camera_drones')])]"/>
+        <field name="description_sale">Compact and powerful waterproof drone perfect for beginners and professionals alike.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/airproof-mini.webp"/>
+    </record>
+    <record id="drone_mini_weight" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_mini"/>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_weight_200g')])]"/>
+    </record>
+    <record id="drone_mini_speed" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_mini"/>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_speed_50kmh')])]"/>
+    </record>
+    <record id="drone_mini_camera" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_mini"/>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_camera_1080p')])]"/>
+    </record>
+    <record id="drone_mini_video" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_mini"/>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_video_ocusync2')])]"/>
+    </record>
+
+    <!-- Airproof Pro -->
+    <record id="drone_pro" model="product.template">
+        <field name="name">Airproof Pro</field>
+        <field name="type">consu</field>
+        <field name="list_price">200.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_waterproof_drones'), ref('categ_camera_drones')])]"/>
+        <field name="description_sale">Professional-grade waterproof drone with advanced features and 4K camera.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/airproof-pro.webp"/>
+    </record>
+    <record id="drone_pro_weight" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_pro"/>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_weight_400g')])]"/>
+    </record>
+    <record id="drone_pro_speed" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_pro"/>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_speed_70kmh')])]"/>
+    </record>
+    <record id="drone_pro_camera" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_pro"/>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_camera_4k')])]"/>
+    </record>
+    <record id="drone_pro_video" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_pro"/>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_video_ocusync2')])]"/>
+    </record>
+
+    <!-- Airproof Robin -->
+    <record id="drone_robin" model="product.template">
+        <field name="name">Airproof Robin</field>
+        <field name="type">consu</field>
+        <field name="list_price">350.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_waterproof_drones'), ref('categ_camera_drones')])]"/>
+        <field name="description_sale">The dream drone is here. Advanced features in a palm-sized package.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/airproof-robin.webp"/>
+    </record>
+    <record id="drone_robin_weight" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_robin"/>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_weight_500g')])]"/>
+    </record>
+    <record id="drone_robin_speed" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_robin"/>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_speed_90kmh')])]"/>
+    </record>
+    <record id="drone_robin_camera" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_robin"/>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_camera_4k')])]"/>
+    </record>
+    <record id="drone_robin_video" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_robin"/>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_video_ocusync3')])]"/>
+    </record>
+
+    <!-- Airproof Falcon -->
+    <record id="drone_falcon" model="product.template">
+        <field name="name">Airproof Falcon</field>
+        <field name="type">consu</field>
+        <field name="list_price">500.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_waterproof_drones'), ref('categ_camera_drones')])]"/>
+        <field name="description_sale">High-performance waterproof drone for demanding professional applications.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/airproof-falcon.webp"/>
+    </record>
+    <record id="drone_falcon_weight" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_falcon"/>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_weight_1kg')])]"/>
+    </record>
+    <record id="drone_falcon_speed" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_falcon"/>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_speed_120kmh')])]"/>
+    </record>
+    <record id="drone_falcon_camera" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_falcon"/>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_camera_8k')])]"/>
+    </record>
+    <record id="drone_falcon_video" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_falcon"/>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_video_ocusync4')])]"/>
+    </record>
+
+    <!-- Airproof Eagle -->
+    <record id="drone_eagle" model="product.template">
+        <field name="name">Airproof Eagle</field>
+        <field name="type">consu</field>
+        <field name="list_price">420.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_waterproof_drones'), ref('categ_camera_drones')])]"/>
+        <field name="description_sale">Our flagship waterproof drone with unmatched performance and reliability.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/airproof-eagle.webp"/>
+    </record>
+    <record id="drone_eagle_weight" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_eagle"/>
+        <field name="attribute_id" ref="attr_weight"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_weight_500g')])]"/>
+    </record>
+    <record id="drone_eagle_speed" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_eagle"/>
+        <field name="attribute_id" ref="attr_speed"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_speed_90kmh')])]"/>
+    </record>
+    <record id="drone_eagle_camera" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_eagle"/>
+        <field name="attribute_id" ref="attr_camera"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_camera_5k')])]"/>
+    </record>
+    <record id="drone_eagle_video" model="product.template.attribute.line">
+        <field name="product_tmpl_id" ref="drone_eagle"/>
+        <field name="attribute_id" ref="attr_video"/>
+        <field name="value_ids" eval="[(6, 0, [ref('attr_video_ocusync3')])]"/>
+    </record>
+
+    <!-- PRODUCTS: ACCESSORIES -->
+
+    <record id="accessory_case" model="product.template">
+        <field name="name">Drone Case</field>
+        <field name="type">consu</field>
+        <field name="list_price">50.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_accessories')])]"/>
+        <field name="description_sale">Protective hard case for your Airproof drone.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/accessories.webp"/>
+    </record>
+    <record id="accessory_float_kit" model="product.template">
+        <field name="name">Float Kit</field>
+        <field name="type">consu</field>
+        <field name="list_price">30.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_accessories')])]"/>
+        <field name="description_sale">Emergency flotation kit for water landings.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/accessories.webp"/>
+    </record>
+    <record id="accessory_controller" model="product.template">
+        <field name="name">Advanced Controller</field>
+        <field name="type">consu</field>
+        <field name="list_price">120.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_accessories')])]"/>
+        <field name="description_sale">Professional-grade controller with extended range and intuitive controls.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/accessories.webp"/>
+    </record>
+    <record id="accessory_camera_4k" model="product.template">
+        <field name="name">4K Camera Module</field>
+        <field name="type">consu</field>
+        <field name="list_price">200.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_accessories')])]"/>
+        <field name="description_sale">Upgrade camera module with 4K video recording capability.</field>
+        <field name="image_1920" type="base64" file="website_airproof/static/src/img/content/accessories.webp"/>
+    </record>
+
+    <!-- PRODUCTS: WARRANTIES -->
+
+    <record id="warranty_extended" model="product.template">
+        <field name="name">Extended Warranty (2 Years)</field>
+        <field name="type">service</field>
+        <field name="list_price">100.00</field>
+        <field name="is_published" eval="True"/>
+        <field name="public_categ_ids" eval="[(6, 0, [ref('categ_warranties')])]"/>
+        <field name="description_sale">Extend your drone warranty for an additional 2 years of coverage.</field>
+    </record>
+</odoo>

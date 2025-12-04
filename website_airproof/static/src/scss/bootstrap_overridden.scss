@@ -1,0 +1,34 @@
+// Typography
+$h1-font-size: 3.125rem !default;
+$h2-font-size: 2.5rem !default;
+$h3-font-size: 2rem !default;
+$h4-font-size: 1.75rem !default;
+$h5-font-size: 1.5rem !default;
+$h6-font-size: 1.25rem !default;
+
+$display-font-sizes: (
+    1: 6.25rem,
+    2: 4.5rem,
+    3: 4rem,
+    4: 3.5rem,
+    5: 3rem,
+    6: 2.5rem,
+) !default;
+
+$headings-font-weight: 700 !default;
+$font-weight-normal: 400 !default;
+
+// Forms
+$input-border-radius: 10px !default;
+$input-border-width: 1px !default;
+
+// Borders
+$btn-border-radius-lg: 0 10px 10px 10px !default;
+$border-radius: 20px !default;
+
+// Navbar
+$navbar-padding-y: 1.4rem !default;
+$navbar-nav-link-padding-x: 1rem !default;
+
+// Breadcrumb
+$breadcrumb-divider: quote("\f105") !default;

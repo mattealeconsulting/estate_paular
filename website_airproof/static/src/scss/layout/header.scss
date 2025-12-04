@@ -1,0 +1,36 @@
+#wrapwrap {
+    // Active nav link indicator
+    .navbar-light .navbar-nav {
+        .nav-link.active,
+        .show > .nav-link {
+            border-bottom: 2px solid o-color('o-color-1');
+        }
+    }
+
+    // Dropdown arrow icon
+    #top_menu_collapse .dropdown-toggle::after {
+        width: 10px;
+        height: 10px;
+        border: none;
+        vertical-align: middle;
+        content: '';
+        background-image: url('/website_airproof/static/src/img/content/icons/angle-down-solid.svg');
+    }
+
+    // Cart and wishlist badges
+    .my_cart_quantity,
+    .my_wish_quantity {
+        width: 18px;
+        height: 18px;
+        border-radius: 99px;
+        background-color: o-color('o-color-1') !important;
+        color: o-color('black') !important;
+    }
+
+    // Centered logo width on desktop
+    @include media-breakpoint-up(lg) {
+        header .o_header_centered_logo {
+            width: 50%;
+        }
+    }
+}

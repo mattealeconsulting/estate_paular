@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- About Page View -->
+    <record id="page_about_view" model="ir.ui.view">
+        <field name="name">About us</field>
+        <field name="type">qweb</field>
+        <field name="arch" type="xml">
+            <t t-name="website_airproof.page_about">
+                <t t-call="website.layout">
+                    <t t-set="additional_title">About us</t>
+                    <div id="wrap" class="oe_structure">
+                        <!-- Hero Section -->
+                        <section class="s_title o_cc o_cc3 pt88 pb88 oe_img_bg o_bg_img_center"
+                                 data-snippet="s_title"
+                                 style="background-image: url('/web/image/website_airproof.img_topview');">
+                            <div class="o_we_bg_filter bg-black-50"/>
+                            <div class="container">
+                                <h1 class="text-center">About Airproof</h1>
+                            </div>
+                        </section>
+
+                        <!-- Intro Section -->
+                        <section class="s_text_block pt64 pb32" data-snippet="s_text_block">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2 text-center">
+                                        <h2>One step beyond the horizon</h2>
+                                        <p class="lead">Creativity is at the heart of every dream. Every idea, every groundbreaking leap that changes our world starts with the vision of talented creators. At Airproof, we give these creators the tools they need to bring their ideas to life.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Mission & Innovation Section -->
+                        <section class="s_text_block pt32 pb64" data-snippet="s_text_block">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 pt32 pb32">
+                                        <h3>Our Mission</h3>
+                                        <p>We do this through an unparalleled commitment to R&amp;D, a culture of constant innovation and curiosity, and a focus on transforming complex technology into easy-to-use devices.</p>
+                                        <p>Our waterproof drones are designed for professional pilots who demand the best in performance, reliability, and innovation.</p>
+                                    </div>
+                                    <div class="col-lg-6 pt32 pb32">
+                                        <h3>Innovation &amp; Quality</h3>
+                                        <p>Every Airproof drone is built with precision engineering and cutting-edge technology. From the Airproof Mini to the powerful Airproof Eagle, our range offers solutions for every professional need.</p>
+                                        <p>We're committed to pushing the boundaries of what's possible in aerial photography and videography.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Airproof School Section -->
+                        <section class="s_text_image o_cc o_cc3 pt88 pb88" data-snippet="s_image_text">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <img src="/web/image/website_airproof.img_drone_flying"
+                                             class="img-fluid rounded"
+                                             alt="Drone flying"
+                                             loading="lazy"/>
+                                    </div>
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <h2>Airproof School</h2>
+                                        <p class="lead fw-bold">Become an expert pilot with our professional training programs.</p>
+                                        <p>Whether you're just starting out or looking to master advanced techniques, Airproof School offers comprehensive courses designed to help you get the most out of your drone.</p>
+                                        <p>Learn from industry professionals and join a community of passionate creators who are pushing the boundaries of aerial content creation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- CTA Section -->
+                        <section class="s_text_block o_cc o_cc2 pt64 pb64" data-snippet="s_text_block">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2 text-center">
+                                        <h2>Join Our Community</h2>
+                                        <p class="lead">Be part of a global community of creators, filmmakers, and drone enthusiasts.</p>
+                                        <div class="pt-3">
+                                            <a href="/shop" class="btn btn-primary btn-lg me-2">Explore Our Drones</a>
+                                            <a href="/contactus" class="btn btn-secondary btn-lg">Contact Us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <!-- About Page Record -->
+    <record id="page_about" model="website.page">
+        <field name="name">About us</field>
+        <field name="is_published" eval="True"/>
+        <field name="url">/about-us</field>
+        <field name="view_id" ref="page_about_view"/>
+    </record>
+</odoo>
